@@ -1,1 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
+
+html,
+body {
+  font-family: "poppins", sans-serif;
+}
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility flex-around {
+  @apply flex items-center justify-around;
+}
+.wavy-circle {
+  --s: 100px;
+  width: var(--s);
+  aspect-ratio: 1;
+  --g: /calc(var(--s) * 0.196) calc(var(--s) * 0.196) radial-gradient(
+      50% 50%,
+      #000 99%,
+      #0000 101%
+    ) no-repeat;
+  mask: calc(50% + var(--s) * 0.372) calc(50% + var(--s) * 0) var(--g),
+    calc(50% + var(--s) * 0.285) calc(50% + var(--s) * 0.239) var(--g),
+    calc(50% + var(--s) * 0.065) calc(50% + var(--s) * 0.366) var(--g),
+    calc(50% + var(--s) * -0.186) calc(50% + var(--s) * 0.322) var(--g),
+    calc(50% + var(--s) * -0.35) calc(50% + var(--s) * 0.127) var(--g),
+    calc(50% + var(--s) * -0.35) calc(50% + var(--s) * -0.127) var(--g),
+    calc(50% + var(--s) * -0.186) calc(50% + var(--s) * -0.322) var(--g),
+    calc(50% + var(--s) * 0.065) calc(50% + var(--s) * -0.366) var(--g),
+    calc(50% + var(--s) * 0.285) calc(50% + var(--s) * -0.239) var(--g),
+    radial-gradient(calc(var(--s) * 0.429), #000 99%, #0000 101%) subtract,
+    calc(50% + var(--s) * 0.468) calc(50% + var(--s) * 0.17) var(--g),
+    calc(50% + var(--s) * 0.249) calc(50% + var(--s) * 0.432) var(--g),
+    calc(50% + var(--s) * -0.087) calc(50% + var(--s) * 0.491) var(--g),
+    calc(50% + var(--s) * -0.382) calc(50% + var(--s) * 0.32) var(--g),
+    calc(50% + var(--s) * -0.498) calc(50% + var(--s) * 0) var(--g),
+    calc(50% + var(--s) * -0.382) calc(50% + var(--s) * -0.32) var(--g),
+    calc(50% + var(--s) * -0.087) calc(50% + var(--s) * -0.491) var(--g),
+    calc(50% + var(--s) * 0.249) calc(50% + var(--s) * -0.432) var(--g),
+    calc(50% + var(--s) * 0.468) calc(50% + var(--s) * -0.17) var(--g);
+}

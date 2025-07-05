@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 
 interface Story {
   name: string;
@@ -10,65 +10,66 @@ interface Story {
 
 const stories: Story[] = [
   {
-    name: 'Gayathri',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Gayathri.mp4',
+    name: "Gayathri",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Gayathri.mp4",
   },
   {
-    name: 'Harini Aiswariya',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Harini Aiswariya.mp4',
+    name: "Harini Aiswariya",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Harini Aiswariya.mp4",
   },
   {
-    name: 'Jeshurun',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Jeshurun.mp4',
+    name: "Jeshurun",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Jeshurun.mp4",
   },
   {
-    name: 'Marimuthu',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Marimuthu.mp4',
+    name: "Marimuthu",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Marimuthu.mp4",
   },
   {
-    name: 'Sai shruthi',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Sai shruthi.mp4',
+    name: "Sai shruthi",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Sai shruthi.mp4",
   },
   {
-    name: 'Sridevi',
-    batch: '2016 Batch',
-    score: '93%',
-    certificate: 'images/certificate.png',
-    video: 'videos/Successful stories/Sridevi.mp4',
+    name: "Sridevi",
+    batch: "2016 Batch",
+    score: "93%",
+    certificate: "images/certificate.png",
+    video: "videos/Successful stories/Sridevi.mp4",
   },
 ];
 
 const SuccessStories: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const cardWidth = scrollRef.current.querySelector('div')?.offsetWidth || 280;
+      const cardWidth =
+        scrollRef.current.querySelector("div")?.offsetWidth || 280;
       const scrollAmount = cardWidth * 2; // Scroll 2 cards at a time
-      scrollRef.current.scrollBy({ 
-        left: direction === 'left' ? -scrollAmount : scrollAmount, 
-        behavior: 'smooth' 
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
       });
     }
   };
 
   const openInNewTab = (videoUrl: string) => {
-    window.open(videoUrl, '_blank', 'noopener,noreferrer');
+    window.open(videoUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -82,7 +83,7 @@ const SuccessStories: React.FC = () => {
         <div
           ref={scrollRef}
           className="flex space-x-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-          style={{ scrollBehavior: 'smooth' }}
+          style={{ scrollBehavior: "smooth" }}
         >
           {stories.map((story, index) => (
             <div
@@ -91,7 +92,7 @@ const SuccessStories: React.FC = () => {
               onClick={() => openInNewTab(story.video)}
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   openInNewTab(story.video);
                 }
@@ -111,7 +112,9 @@ const SuccessStories: React.FC = () => {
               <div className="bg-yellow-400 text-white font-bold text-sm px-4 py-1 rounded-full mb-3">
                 {story.score} Score
               </div>
-              <p className="text-xl font-semibold text-gray-900">{story.name}</p>
+              <p className="text-xl font-semibold text-gray-900">
+                {story.name}
+              </p>
               <p className="text-sm text-gray-600">{story.batch}</p>
             </div>
           ))}
@@ -120,7 +123,7 @@ const SuccessStories: React.FC = () => {
         {/* Scroll buttons */}
         <div className="flex justify-center gap-4 mt-6">
           <button
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             aria-label="Scroll left"
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="button"
@@ -128,7 +131,7 @@ const SuccessStories: React.FC = () => {
             ←
           </button>
           <button
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             aria-label="Scroll right"
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="button"
