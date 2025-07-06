@@ -1,11 +1,13 @@
-// components/Header.tsx
-
+import logo from "/images/logo.png";
 const Header = () => {
+  const handleClick = () => {
+    window.open("https://zipsar-focas-shop.netlify.app/", "_blank");
+  };
   return (
     <header className="w-full max-w-[90%] mx-auto px-0 md:px-4 lg:px-6">
       <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Logo */}
-        <div className="text-2xl font-bold text-blue-900">FOCAS</div>
+        <img src={logo} alt="" className="h-[50px]" />
 
         {/* Search bar */}
         <div className="flex items-center border border-gray-950 rounded-full px-2 py-1.5 w-full md:w-1/3 border-b-3 bg-white">
@@ -31,8 +33,11 @@ const Header = () => {
         </div>
 
         {/* Enroll button */}
-        <button className="bg-black text-gray-50 px-8 py-2.5 font-light rounded-full whitespace-nowrap cursor-pointer">
-          Enroll Now
+        <button
+          className="bg-black text-gray-50 px-8 py-2.5 font-light rounded-full whitespace-nowrap cursor-pointer"
+          onClick={handleClick}
+        >
+          Shop Now
         </button>
       </div>
 

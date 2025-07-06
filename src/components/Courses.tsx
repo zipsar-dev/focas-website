@@ -209,7 +209,7 @@ const Courses = () => {
   };
 
   return (
-    <section className="w-full py-5 flex flex-col items-center px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-5 flex flex-col items-center">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold relative">
         Courses
         <img
@@ -220,7 +220,7 @@ const Courses = () => {
       </h1>
 
       {/* Tabs */}
-      <div className="w-full flex justify-center mt-6 sm:mt-8 lg:mt-10">
+      <div className="w-[90%] flex justify-center mx-auto mt-6 sm:mt-8 lg:mt-10">
         <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4 sm:mb-6 py-1 px-2 border border-b-3 rounded-xl w-fit">
           {tabs.map((tab) => (
             <button
