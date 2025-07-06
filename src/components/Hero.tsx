@@ -40,11 +40,9 @@ const Hero = () => {
           </div>
 
           {/* Right Side: Image + Floating Cards */}
-          <div className="relative flex justify-center items-center min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] order-1 lg:order-2">
+          <div className="relative flex-center min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] order-1 lg:order-2">
             {/* Background Elements */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-60 h-60 sm:w-80 sm:h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-60 animate-pulse"></div>
-            </div>
+            <div className="absolute top-[30%] left-[25%] w-[70%] sm:w-[60%] lg:w-[50%] max-w-[300px] h-[70vw] sm:h-[50vw] lg:h-[400px] rounded-t-full bg-[#a5ffaa] border-2 border-black before:absolute before:w-full before:h-full before:rounded-t-full before:bg-white before:-top-[5%] before:-left-[5%]"></div>
 
             {/* Graduate Image */}
             <div className="relative z-10 transform hover:scale-105 transition-transform duration-500">
@@ -127,51 +125,6 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile Floating Cards - Below Image */}
-        {/* <div className="block sm:hidden mt-8 space-y-4">
-                    <div className="grid grid-cols-1 gap-4">
-                        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 mx-4">
-                            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                <img src="images/books.jpg" alt="Courses" className="w-8 h-8 rounded" />
-                            </div>
-                            <div>
-                                <div className="font-bold text-blue-600 text-lg">150+</div>
-                                <div className="text-sm text-gray-600">Industry-Relevant Courses</div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 mx-4">
-                            <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <img src="images/earth.jpg" alt="Countries" className="w-8 h-8 rounded" />
-                            </div>
-                            <div>
-                                <div className="font-bold text-yellow-600 text-lg">20+</div>
-                                <div className="text-sm text-gray-600">Countries Trust Us</div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 mx-4">
-                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                                <img src="images/teacher.png" alt="Mentors" className="w-8 h-8" />
-                            </div>
-                            <div>
-                                <div className="font-bold text-green-600 text-lg">Certified</div>
-                                <div className="text-sm text-gray-600">Expert Mentors</div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 mx-4">
-                            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                                <img src="images/briefcase.png" alt="Placement" className="w-8 h-8" />
-                            </div>
-                            <div>
-                                <div className="font-bold text-purple-600 text-lg">80%</div>
-                                <div className="text-sm text-gra    y-600">Placement Success Rate</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
       </div>
 
       {/* CSS Animations */}

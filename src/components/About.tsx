@@ -1,9 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register the ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 const About: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -15,195 +10,148 @@ const About: React.FC = () => {
   const shapeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title animation
-      if (titleRef.current) {
-        gsap.fromTo(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 50,
-            scale: 0.8,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.out",
-            delay: 0.2,
-          }
-        );
-      }
+    // Title animation
+    if (titleRef.current) {
+      titleRef.current.style.opacity = "0";
+      titleRef.current.style.transform = "translateY(50px) scale(0.8)";
+      setTimeout(() => {
+        if (titleRef.current) {
+          titleRef.current.style.transition = "all 1.2s ease-out";
+          titleRef.current.style.opacity = "1";
+          titleRef.current.style.transform = "translateY(0) scale(1)";
+        }
+      }, 200);
+    }
 
-      // Text animation
-      if (textRef.current) {
-        gsap.fromTo(
-          textRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            delay: 0.5,
-          }
-        );
-      }
+    // Text animation
+    if (textRef.current) {
+      textRef.current.style.opacity = "0";
+      textRef.current.style.transform = "translateY(30px)";
+      setTimeout(() => {
+        if (textRef.current) {
+          textRef.current.style.transition = "all 1s ease-out";
+          textRef.current.style.opacity = "1";
+          textRef.current.style.transform = "translateY(0)";
+        }
+      }, 500);
+    }
 
-      // Shape animation
-      if (shapeRef.current) {
-        gsap.fromTo(
-          shapeRef.current,
-          {
-            opacity: 0,
-            scale: 0.5,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "back.out(1.7)",
-            delay: 0.8,
-          }
-        );
-      }
+    // Shape animation
+    if (shapeRef.current) {
+      shapeRef.current.style.opacity = "0";
+      shapeRef.current.style.transform = "translateY(30px) scale(0.5)";
+      setTimeout(() => {
+        if (shapeRef.current) {
+          shapeRef.current.style.transition = "all 1.2s ease-out";
+          shapeRef.current.style.opacity = "1";
+          shapeRef.current.style.transform = "translateY(0) scale(1)";
+        }
+      }, 800);
+    }
 
-      // Stats animation with stagger
-      if (statsRef.current) {
-        gsap.fromTo(
-          statsRef.current.children,
-          {
-            opacity: 0,
-            y: 40,
-            scale: 0.8,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-            stagger: 0.15,
-            delay: 1,
-          }
-        );
-      }
+    // Stats animation
+    if (statsRef.current) {
+      Array.from(statsRef.current.children).forEach((child, index) => {
+        if (child instanceof HTMLElement) {
+          child.style.opacity = "0";
+          child.style.transform = "translateY(40px) scale(0.8)";
+          setTimeout(() => {
+            child.style.transition = "all 0.8s ease-out";
+            child.style.opacity = "1";
+            child.style.transform = "translateY(0) scale(1)";
+          }, 1000 + index * 150);
+        }
+      });
+    }
 
-      // Tutors circles animation - Slide up one by one
-      if (tutorsRef.current) {
-        const tutorCards = tutorsRef.current.children;
-        gsap.fromTo(
-          tutorCards,
-          {
-            opacity: 0,
-            y: 60,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            stagger: 0.2,
-            scrollTrigger: {
-              trigger: tutorsRef.current,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+    // Tutors animation
+    if (tutorsRef.current) {
+      Array.from(tutorsRef.current.children).forEach((child, index) => {
+        if (child instanceof HTMLElement) {
+          child.style.opacity = "0";
+          child.style.transform = "translateY(60px)";
+          setTimeout(() => {
+            child.style.transition = "all 0.8s ease-out";
+            child.style.opacity = "1";
+            child.style.transform = "translateY(0)";
+          }, 1500 + index * 200);
+        }
+      });
+    }
 
-        // Simple hover animations for tutor cards
-        Array.from(tutorCards).forEach((card: Element) => {
-          const circle = card.querySelector(
-            ".w-\\[150px\\],.w-\\[200px\\]"
-          ) as HTMLElement;
-          if (circle) {
-            const hoverTl = gsap.timeline({ paused: true });
+    // Infinite scroll animation
+    if (scrollRef.current) {
+      const scrollContainer = scrollRef.current;
 
-            hoverTl.to(circle, {
-              scale: 1.05,
-              duration: 0.3,
-              ease: "power2.out",
-            });
+      setTimeout(() => {
+        const scrollElements = Array.from(scrollContainer.children);
 
-            card.addEventListener("mouseenter", () => hoverTl.play());
-            card.addEventListener("mouseleave", () => hoverTl.reverse());
-          }
+        scrollElements.forEach((element: Element) => {
+          const clone = element.cloneNode(true);
+          scrollContainer.appendChild(clone);
         });
-      }
 
-      // Infinite scrolling animation for the scroll section
-      if (scrollRef.current) {
-        const scrollContainer = scrollRef.current;
-
-        // Wait for next frame to ensure DOM is rendered
-        setTimeout(() => {
-          const scrollElements = Array.from(scrollContainer.children);
-
-          // Clone elements for seamless loop
-          scrollElements.forEach((element: Element) => {
-            const clone = element.cloneNode(true);
-            scrollContainer.appendChild(clone);
-          });
-
-          // Get total width of all original elements
-          let totalWidth = 0;
-          scrollElements.forEach((element: Element) => {
-            totalWidth += element.getBoundingClientRect().width;
-          });
-
-          // Set initial position and animate
-          gsap.set(scrollContainer, { x: 0 });
-
-          gsap.to(scrollContainer, {
-            x: -totalWidth,
-            duration: totalWidth / 80, // Consistent speed: 80px per second
-            ease: "none",
-            repeat: -1,
-          });
-        }, 100);
-      }
-
-      // Continuous floating animation for stats numbers
-      if (statsRef.current) {
-        gsap.to(statsRef.current.querySelectorAll("h2"), {
-          y: -5,
-          duration: 2,
-          ease: "power2.inOut",
-          yoyo: true,
-          repeat: -1,
-          stagger: 0.3,
+        let totalWidth = 0;
+        scrollElements.forEach((element: Element) => {
+          totalWidth += element.getBoundingClientRect().width;
         });
-      }
-    }, aboutRef);
 
-    return () => ctx.revert(); // Cleanup
+        const duration = totalWidth / 80;
+        let currentX = 0;
+
+        const animate = () => {
+          currentX -= 1;
+          if (currentX <= -totalWidth) {
+            currentX = 0;
+          }
+          scrollContainer.style.transform = `translateX(${currentX}px)`;
+          requestAnimationFrame(animate);
+        };
+
+        animate();
+      }, 100);
+    }
+
+    // Floating animation for stats
+    if (statsRef.current) {
+      const statsNumbers = statsRef.current.querySelectorAll("h2");
+      statsNumbers.forEach((element, index) => {
+        if (element instanceof HTMLElement) {
+          let direction = 1;
+          let currentY = 0;
+
+          const float = () => {
+            currentY += direction * 0.1;
+            if (currentY >= 5) direction = -1;
+            if (currentY <= -5) direction = 1;
+
+            element.style.transform = `translateY(${currentY}px)`;
+            requestAnimationFrame(float);
+          };
+
+          setTimeout(() => float(), index * 300);
+        }
+      });
+    }
   }, []);
 
   return (
     <div
       ref={aboutRef}
-      className="w-full bg-blue-500 py-6 sm:py-8 lg:py-10 relative px-4 sm:px-6 lg:px-8"
+      className="w-full bg-blue-500 py-4 sm:py-6 md:py-8 lg:py-10 relative px-3 sm:px-4 md:px-6 lg:px-8"
     >
       <div className="flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/2 min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center pl-0 lg:pl-15">
-          <div className="w-full sm:w-[80%] text-white mx-auto">
+        <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center pl-0 lg:pl-15">
+          <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] text-white mx-auto">
             <h1
               ref={titleRef}
-              className="text-3xl sm:text-4xl lg:text-5xl font-semibold mt-1"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mt-1"
             >
               About Our Tutor
             </h1>
             <p
               ref={textRef}
-              className="mt-4 sm:mt-6 font-light text-sm sm:text-base lg:text-lg"
+              className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 font-light text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed"
             >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
               necessitatibus eum voluptatem! Qui, eveniet illo. Voluptas ipsam
@@ -214,10 +162,10 @@ const About: React.FC = () => {
             </p>
             <div
               ref={statsRef}
-              className="grid grid-cols-2 gap-2 sm:gap-4 mt-4 sm:mt-6"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6"
             >
-              <div className="flex gap-3 sm:gap-5 items-center mt-4">
-                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-4">
+                <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                   <img
                     src="https://placehold.co/100x100/ABFFA0/white?text=A"
                     alt="Instructors"
@@ -225,12 +173,14 @@ const About: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold">300</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
+                    300
+                  </h2>
                   <p className="text-light text-xs sm:text-sm">Instructors</p>
                 </div>
               </div>
-              <div className="flex gap-3 sm:gap-5 items-center">
-                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-0">
+                <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                   <img
                     src="https://placehold.co/100x100/A0BEFF/white?text=B"
                     alt="Videos"
@@ -238,14 +188,14 @@ const About: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                  <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
                     10,000+
                   </h2>
                   <p className="text-light text-xs sm:text-sm">Videos</p>
                 </div>
               </div>
-              <div className="flex gap-3 sm:gap-5 items-center">
-                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
+                <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                   <img
                     src="https://placehold.co/100x100/A0BEFF/white?text=C"
                     alt="Students"
@@ -253,14 +203,14 @@ const About: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                  <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
                     20,000+
                   </h2>
                   <p className="text-light text-xs sm:text-sm">Students</p>
                 </div>
               </div>
-              <div className="flex gap-3 sm:gap-5 items-center">
-                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
+                <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                   <img
                     src="https://placehold.co/100x100/ABFFA0/white?text=D"
                     alt="Users"
@@ -268,7 +218,7 @@ const About: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                  <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
                     1,00,000+
                   </h2>
                   <p className="text-light text-xs sm:text-sm">Users</p>
@@ -277,20 +227,20 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center mt-6 lg:mt-0">
+        <div className="w-full lg:w-1/2 min-h-[30vh] sm:min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center mt-4 sm:mt-6 lg:mt-0">
           <div
             ref={shapeRef}
-            className="w-[200px] sm:w-[250px] h-[250px] sm:h-[350px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-3 sm:before:-top-4 before:-left-3 sm:before:-left-4"
+            className="w-[150px] sm:w-[180px] md:w-[200px] lg:w-[250px] h-[180px] sm:h-[220px] md:h-[250px] lg:h-[350px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-2 sm:before:-top-3 md:before:-top-3 lg:before:-top-4 before:-left-2 sm:before:-left-3 md:before:-left-3 lg:before:-left-4"
           ></div>
         </div>
       </div>
-      <div className="min-h-[40vh] w-full mt-6 sm:mt-8 lg:mt-10">
-        <h1 className="w-full text-center font-semibold text-3xl sm:text-4xl lg:text-5xl text-white mt-2">
+      <div className="min-h-[30vh] sm:min-h-[35vh] md:min-h-[40vh] w-full mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+        <h1 className="w-full text-center font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mt-2">
           Our Tutors
         </h1>
         <div
           ref={tutorsRef}
-          className="w-full sm:w-[80%] mx-auto flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10 mt-6 sm:mt-8"
+          className="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 mt-4 sm:mt-6 md:mt-8 px-2"
         >
           {[
             { name: "John Smith", role: "Senior Developer" },
@@ -301,11 +251,11 @@ const About: React.FC = () => {
           ].map((tutor, index) => (
             <div
               key={index}
-              className="flex flex-col items-center w-[150px] sm:w-[180px] lg:w-[200px]"
+              className="flex flex-col items-center w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px]"
             >
-              <div className="w-[150px] sm:w-[180px] lg:w-[200px] h-[150px] sm:h-[180px] lg:h-[200px] rounded-full outline-2 outline-white outline-offset-8 sm:outline-offset-12 lg:outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-white font-semibold text-base sm:text-lg lg:text-xl">
+              <div className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] rounded-full outline-2 outline-white outline-offset-6 sm:outline-offset-8 md:outline-offset-10 lg:outline-offset-12 xl:outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
+              <div className="text-center mt-3 sm:mt-4 md:mt-5 lg:mt-6">
+                <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg lg:text-xl">
                   {tutor.name}
                 </h3>
                 <p className="text-white/80 text-xs sm:text-sm mt-1">
@@ -318,32 +268,32 @@ const About: React.FC = () => {
       </div>
 
       {/* Infinite scroll section */}
-      <div className="w-full h-[80px] sm:h-[100px] bg-black text-white absolute left-0 -bottom-20 sm:-bottom-25 overflow-hidden">
+      <div className="w-full h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] bg-black text-white absolute left-0 -bottom-15 sm:-bottom-18 md:-bottom-20 lg:-bottom-25 overflow-hidden">
         <div
           ref={scrollRef}
           className="flex items-center h-full whitespace-nowrap"
         >
-          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
-            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-blue-500"></div>
-            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
+            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-blue-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
               80% Placement Success Rate
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
-            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-green-500"></div>
-            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
+            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-green-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
               Expert Instructors
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
-            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-yellow-500"></div>
-            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
+            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-yellow-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
               24/7 Support Available
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
-            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-purple-500"></div>
-            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
+            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-purple-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
               Industry Leading Curriculum
             </h2>
           </div>

@@ -16,6 +16,9 @@ body {
 .flex-between {
   @apply flex items-center justify-between;
 }
+.abs-center {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
 .col-center {
   @apply flex flex-col items-center justify-center;
 }

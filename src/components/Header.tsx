@@ -31,7 +31,7 @@ const Header = () => {
         </div>
 
         {/* Enroll button */}
-        <button className="bg-black text-gray-50 px-8 py-2.5 font-light rounded-full whitespace-nowrap">
+        <button className="bg-black text-gray-50 px-8 py-2.5 font-light rounded-full whitespace-nowrap cursor-pointer">
           Enroll Now
         </button>
       </div>

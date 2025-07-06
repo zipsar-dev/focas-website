@@ -226,7 +226,7 @@ const Courses = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm font-normal ${
+              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm font-normal cursor-pointer ${
                 activeTab === tab
                   ? "bg-[#507cf4] text-white border border-black"
                   : "text-black"
@@ -276,7 +276,7 @@ const Courses = () => {
                     {course.description}
                   </p>
                   <div className="w-full">
-                    <button className="border border-black rounded-full px-4 sm:px-6 lg:px-8 py-1 sm:py-2 text-xs sm:text-sm">
+                    <button className="border border-black rounded-full px-4 sm:px-6 lg:px-8 py-1 sm:py-2 text-xs sm:text-sm cursor-pointer">
                       Know More
                     </button>
                   </div>
@@ -291,14 +291,14 @@ const Courses = () => {
       <div className="flex justify-center items-center gap-4 mt-4 sm:mt-6">
         <button
           onClick={handlePrevious}
-          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
           aria-label="Previous cards"
         >
           <HiChevronLeft size={20} className="sm:h-6 sm:w-6" />
         </button>
         <button
           onClick={handleNext}
-          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
           aria-label="Next cards"
         >
           <HiChevronRight size={20} className="sm:h-6 sm:w-6" />

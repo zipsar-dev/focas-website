@@ -326,7 +326,7 @@ const Stories = () => {
         <button
           onClick={handlePrevious}
           disabled={isAnimating}
-          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Previous cards"
         >
           <HiChevronLeft size={20} className="sm:w-6 sm:h-6" />
@@ -335,7 +335,7 @@ const Stories = () => {
         <button
           onClick={handleNext}
           disabled={isAnimating}
-          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Next cards"
         >
           <HiChevronRight size={20} className="sm:w-6 sm:h-6" />

@@ -89,9 +89,7 @@ const FAQ: React.FC = () => {
 
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openItem === item.id
-                  ? "max-h-96 opacity-100"
-                  : "max-h-0 opacity-0"
+                openItem === item.id ? "opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               <div className="px-6 pb-5 border-t border-black">
