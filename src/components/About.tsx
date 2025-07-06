@@ -96,7 +96,6 @@ const About: React.FC = () => {
           totalWidth += element.getBoundingClientRect().width;
         });
 
-        const duration = totalWidth / 80;
         let currentX = 0;
 
         const animate = () => {

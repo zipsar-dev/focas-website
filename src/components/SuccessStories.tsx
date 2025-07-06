@@ -173,7 +173,9 @@ const SuccessStories: React.FC = () => {
               key={index}
             >
               <div
-                ref={(el) => (cardsRef.current[index] = el)}
+                ref={(el) => {
+                  cardsRef.current[index] = el;
+                }}
                 className={`flex-shrink-0 bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transition-all duration-500 ease-out snap-start ${
                   isHovered === index ? "shadow-2xl" : ""
                 }`}

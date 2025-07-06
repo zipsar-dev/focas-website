@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import gsap from "gsap";
 
 // Mock cap image - in your actual implementation, replace with your cap import
 const cap = "images/cap.png";
@@ -103,30 +104,24 @@ const Stories = () => {
   // Check if mobile
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(innerWidth < 768);
     };
 
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => removeEventListener("resize", checkMobile);
   }, []);
 
   // GSAP animations with timeline
   useEffect(() => {
     const initGSAPAnimations = () => {
       // Create GSAP timeline
-      const tl = window.gsap?.timeline() || {
-        from: () => tl,
-        to: () => tl,
-        fromTo: () => tl,
-        set: () => tl,
-        delay: () => tl,
-      };
+      const tl = gsap.timeline();
 
-      if (window.gsap) {
+      if (gsap) {
         // Initial setup - hide elements
-        window.gsap.set(
+        gsap.set(
           [titleRef.current, capRef.current, ".card-item", buttonsRef.current],
           {
             opacity: 0,
@@ -161,7 +156,7 @@ const Stories = () => {
             ease: "power2.out",
             onComplete: () => {
               // Animate percentage badges
-              window.gsap.fromTo(
+              gsap.fromTo(
                 ".percentage-badge",
                 { scale: 0, rotation: 180 },
                 {
@@ -188,7 +183,7 @@ const Stories = () => {
     };
 
     // Load GSAP
-    if (!window.gsap) {
+    if (!gsap) {
       const script = document.createElement("script");
       script.src =
         "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
@@ -203,14 +198,14 @@ const Stories = () => {
 
   // GSAP card transition animations
   const animateCardTransition = (direction: "next" | "prev") => {
-    if (isAnimating || !window.gsap) return;
+    if (isAnimating || !gsap) return;
     setIsAnimating(true);
 
     const cards = document.querySelectorAll(".card-item");
     const translateX = direction === "next" ? -50 : 50;
 
     // Exit animation
-    window.gsap.to(cards, {
+    gsap.to(cards, {
       x: translateX,
       scale: 0.8,
       opacity: 0.5,
@@ -228,7 +223,7 @@ const Stories = () => {
 
         // Enter animation
         setTimeout(() => {
-          window.gsap.fromTo(
+          gsap.fromTo(
             cards,
             { x: -translateX, scale: 0.9, opacity: 0 },
             {
@@ -240,7 +235,7 @@ const Stories = () => {
               ease: "power2.out",
               onComplete: () => {
                 // Animate percentage badges
-                window.gsap.fromTo(
+                gsap.fromTo(
                   ".percentage-badge",
                   { scale: 0, rotation: 180 },
                   {
