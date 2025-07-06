@@ -29,7 +29,7 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
     };
   }, []);
   return (
-    <div className="w-[80vw] sm:w-[45vw] lg:w-[40vw] h-[50vh] sm:h-[45vh] lg:h-[40vh] rounded-xl flex items-center justify-around border border-black py-4 sm:py-5 px-2 sm:px-3 mx-2 sm:mx-3 lg:mx-4">
+    <div className="w-[80vw] sm:w-[45vw] lg:w-[40vw] h-[30vh] sm:h-[45vh] lg:h-[40vh] rounded-xl flex items-center justify-around border border-black py-4 sm:py-5 px-2 sm:px-3 mx-2 sm:mx-3 lg:mx-4">
       {!isMobileView ? (
         <div className="w-[40%] h-[95%]">
           <img
@@ -162,14 +162,14 @@ const Feedback = () => {
         <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
           <button
             onClick={prevCards}
-            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border border-black border-b-3 bg-[#a5ffaa]"
+            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border cursor-pointer border-black border-b-3 bg-[#a5ffaa]"
             disabled={currentIndex === 0}
           >
             <HiChevronLeft />
           </button>
           <button
             onClick={nextCards}
-            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border border-black border-b-3 bg-[#a5ffaa]"
+            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border cursor-pointer border-black border-b-3 bg-[#a5ffaa]"
             disabled={currentIndex + cardsPerPage >= mockData.length}
           >
             <HiChevronRight />

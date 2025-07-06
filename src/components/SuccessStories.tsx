@@ -151,7 +151,7 @@ const SuccessStories: React.FC = () => {
   };
 
   return (
-    <section className="w-full mt-15 py-8 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <section className="w-full py-8 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
       <div className="text-center my-8 md:my-16 px-4">
         <h2
           ref={titleRef}
@@ -251,7 +251,7 @@ const SuccessStories: React.FC = () => {
           <button
             onClick={() => scroll("left")}
             aria-label="Previous videos"
-            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] border border-black border-b-3"
+            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-3"
             type="button"
           >
             <IoChevronBack className="w-5 h-5 md:w-6 md:h-6" />
@@ -259,7 +259,7 @@ const SuccessStories: React.FC = () => {
           <button
             onClick={() => scroll("right")}
             aria-label="Next videos"
-            className="rounded-full p-3 md:p-4 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] border border-black border-b-3"
+            className="rounded-full p-3 md:p-4 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-3"
             type="button"
           >
             <IoChevronForward className="w-5 h-5 md:w-6 md:h-6" />

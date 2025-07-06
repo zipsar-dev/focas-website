@@ -49,10 +49,10 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="py-16">
+    <div className="pt-16">
       {/* Header */}
       <div className="text-center mb-12 relative">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3 xl md:text-5xl font-bold text-gray-900 mb-4">
           Frequently Asked Questions
         </h1>
       </div>
@@ -70,12 +70,12 @@ const FAQ: React.FC = () => {
               className="w-full px-6 py-5 text-left focus:outline-none"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-gray-900 pr-4">
+                <h3 className="text-base md:text-xl font-semibold text-gray-900 pr-4">
                   {item.question}
                 </h3>
                 <div className="flex-shrink-0">
                   <div
-                    className={`w-10 h-10 border border-black border-b-3 rounded-lg flex-center transition-all duration-300 ${
+                    className={`w-10 h-10 border border-black border-b-3 rounded-lg flex-center cursor-pointer transition-all duration-300 ${
                       openItem === item.id
                         ? "bg-green-500"
                         : "bg-green-100 hover:bg-green-200"
@@ -93,7 +93,7 @@ const FAQ: React.FC = () => {
               }`}
             >
               <div className="px-6 pb-5 border-t border-black">
-                <p className="text-gray-600 mt-2 leading-relaxed">
+                <p className="text-gray-600 text-sm mt-2 leading-relaxed">
                   {item.answer}
                 </p>
               </div>
