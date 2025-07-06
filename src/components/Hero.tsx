@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="w-full max-w-7xl mx-auto px-2 md:px-4 lg:px-6 flex items-start justify-center overflow-hidden">
+    <section className="w-[90%] mx-auto px-2 md:px-4 lg:px-6 flex items-start justify-center overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side: Text Content */}
@@ -42,7 +42,7 @@ const Hero = () => {
           {/* Right Side: Image + Floating Cards */}
           <div className="relative flex-center min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] order-1 lg:order-2">
             {/* Background Elements */}
-            <div className="absolute top-[30%] left-[25%] w-[70%] sm:w-[60%] lg:w-[50%] max-w-[300px] h-[70vw] sm:h-[50vw] lg:h-[400px] rounded-t-full bg-[#a5ffaa] border-2 border-black before:absolute before:w-full before:h-full before:rounded-t-full before:bg-white before:-top-[5%] before:-left-[5%]"></div>
+            <div className="absolute top-[30%] left-[25%] w-[70%] sm:w-[60%] lg:w-[50%] max-w-[300px] h-[70vw] sm:h-[50vw] lg:h-[400px] rounded-t-full bg-[#a5ffaa] border-2 border-black before:absolute before:w-full before:h-full before:rounded-t-full before:bg-blue-500 before:-top-[5%] before:-left-[5%]"></div>
 
             {/* Graduate Image */}
             <div className="relative z-10 transform hover:scale-105 transition-transform duration-500">

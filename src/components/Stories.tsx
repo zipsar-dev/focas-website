@@ -280,7 +280,7 @@ const Stories = () => {
   const visibleCards = getVisibleCards();
 
   return (
-    <div className="min-h-[90vh] w-full mt-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[80vh] w-full mt-10 px-4 sm:px-6 lg:px-8">
       <div className="w-full flex justify-center items-center py-6 sm:py-8">
         <h1
           ref={titleRef}

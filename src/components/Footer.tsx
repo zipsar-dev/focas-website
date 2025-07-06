@@ -2,7 +2,7 @@ import React from "react";
 import { FaYoutube } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
-import logo from "/images/logo.png";
+import logo from "/images/logoblack.png";
 
 const Footer: React.FC = () => {
   React.useEffect(() => {
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-black text-white pt-16 relative mt-[8rem] min-h-[400px]">
+    <footer className="bg-black text-white pt-16 pb-10 relative mt-[8rem] min-h-[400px]">
       {/* Centered Blue Box with Zigzag Grid - Enhanced Responsiveness */}
       <div className="absolute left-1/2 -top-[40px] sm:-top-[60px] md:-top-[80px] lg:-top-[120px] xl:-top-[150px] transform -translate-x-1/2 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] h-[150px] xs:h-[140px] sm:h-[170px] md:h-[200px] lg:h-[220px] xl:h-[250px] border border-black rounded-lg bg-blue-500 overflow-hidden">
         {/* Zigzag Grid Background for Blue Box */}
