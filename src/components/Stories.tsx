@@ -64,28 +64,28 @@ const Stories = () => {
       name: "Gowtham",
       batch: "2024",
       percent: 95,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Jane",
+      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Gowtham",
       certificateImage: Gowtham,
     },
     {
       name: "Kavitha",
       batch: "2023",
       percent: 97,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Mike",
+      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Kavitha",
       certificateImage: kavitha,
     },
     {
       name: "Manjunath",
       batch: "2024",
       percent: 95,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Jane",
+      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Manjunath",
       certificateImage: Manjunath,
     },
     {
       name: "Mathumatha",
       batch: "2023",
       percent: 97,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Mike",
+      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Mathumatha",
       certificateImage: Mathumetha,
     },
   ];
@@ -130,7 +130,7 @@ const Stories = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="pt-10 flex gap-10 justify-center transition-all duration-300 ease-in-out">
+      <div className="mt-15 flex gap-10 justify-center transition-all duration-300 ease-in-out">
         {visibleCards.map((card, index) => (
           <Card
             key={`${card.name}-${currentIndex + index}`}
@@ -147,7 +147,7 @@ const Stories = () => {
       <div className="flex justify-center items-center gap-4 mt-8">
         <button
           onClick={handlePrevious}
-          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-2 transition-colors duration-200 flex-center "
+          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex-center "
           aria-label="Previous cards"
         >
           <HiChevronLeft size={24} />
@@ -155,7 +155,7 @@ const Stories = () => {
 
         <button
           onClick={handleNext}
-          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-2 transition-colors duration-200 flex-center"
+          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex-center"
           aria-label="Next cards"
         >
           <HiChevronRight size={24} />

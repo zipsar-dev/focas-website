@@ -4,12 +4,28 @@
 html,
 body {
   font-family: "poppins", sans-serif;
+  scroll-behavior: smooth;
 }
-@utility flex-center {
+.flex-center {
   @apply flex items-center justify-center;
 }
-@utility flex-around {
+.flex-around {
   @apply flex items-center justify-around;
+}
+.flex-between {
+  @apply flex items-center justify-between;
+}
+.col-center {
+  @apply flex flex-col items-center justify-center;
+}
+.col-between {
+  @apply flex flex-col items-center justify-between;
+}
+.col-around {
+  @apply flex flex-col items-center justify-around;
+}
+.footer-item {
+  @apply transition-all duration-300;
 }
 .wavy-circle {
   --s: 100px;
