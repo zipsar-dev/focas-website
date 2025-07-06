@@ -133,7 +133,7 @@ const Feedback = () => {
       <h1 className="w-full text-center text-3xl sm:text-4xl lg:text-5xl font-semibold mt-4 sm:mt-5">
         What Our Students Say
       </h1>
-      <div className="w-full border-t border-black mt-3 sm:mt-4 py-8 sm:py-10 relative">
+      <div className="w-full mt-3 sm:mt-4 py-8 sm:py-10 relative">
         <div className="overflow-hidden">
           <div
             className={`flex transition-transform duration-500 ease-out ${

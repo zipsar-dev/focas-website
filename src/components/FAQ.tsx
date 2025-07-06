@@ -56,7 +56,7 @@ const FAQ: React.FC = () => {
           Frequently Asked Questions
         </h1>
       </div>
-      <div className="w-full border-t border-black"></div>
+      <div className="w-full"></div>
 
       {/* FAQ Items */}
       <div className="space-y-4 w-[80%] mx-auto mt-10">

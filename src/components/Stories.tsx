@@ -281,7 +281,7 @@ const Stories = () => {
 
   return (
     <div className="min-h-[90vh] w-full mt-10 px-4 sm:px-6 lg:px-8">
-      <div className="w-full flex justify-center items-center py-6 sm:py-8 border-b-2 border-gray-500/80">
+      <div className="w-full flex justify-center items-center py-6 sm:py-8">
         <h1
           ref={titleRef}
           className="font-semibold text-3xl sm:text-4xl lg:text-5xl relative"
