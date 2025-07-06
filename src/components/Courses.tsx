@@ -196,33 +196,37 @@ const Courses = () => {
 
   const handlePrevious = () => {
     scrollContainerRef.current?.scrollBy({
-      left: -450,
+      left: -300, // Reduced scroll distance for smaller screens
       behavior: "smooth",
     });
   };
 
   const handleNext = () => {
     scrollContainerRef.current?.scrollBy({
-      left: 450,
+      left: 300, // Reduced scroll distance for smaller screens
       behavior: "smooth",
     });
   };
 
   return (
-    <section className="w-full py-5 flex flex-col items-center">
-      <h1 className="text-5xl font-semibold relative">
+    <section className="w-full py-5 flex flex-col items-center px-4 sm:px-6 lg:px-8">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold relative">
         Courses
-        <img src={bulb} alt="" className="w-[50%] absolute -top-10 -right-22" />
+        <img
+          src={bulb}
+          alt=""
+          className="w-1/3 sm:w-1/4 lg:w-1/2 absolute -top-8 sm:-top-10 lg:-top-12 -right-12 sm:-right-16 lg:-right-22"
+        />
       </h1>
 
       {/* Tabs */}
-      <div className="w-full flex justify-center mt-10">
-        <div className="flex justify-center gap-4 mb-6 py-1 px-2 border border-b-3 rounded-xl w-fit">
+      <div className="w-full flex justify-center mt-6 sm:mt-8 lg:mt-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4 sm:mb-6 py-1 px-2 border border-b-3 rounded-xl w-fit">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 rounded-lg text-sm font-normal ${
+              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm font-normal ${
                 activeTab === tab
                   ? "bg-[#507cf4] text-white border border-black"
                   : "text-black"
@@ -241,26 +245,20 @@ const Courses = () => {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className={`border border-black w-full h-[550px] flex items-center overflow-x-auto overflow-y-hidden select-none ${
+        className={`border border-black w-full h-[400px] sm:h-[450px] lg:h-[550px] flex items-center overflow-x-auto overflow-y-hidden select-none ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        } scrollbar-hide`}
       >
-        {/* <style>{`
-          .courses-container::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style> */}
-        <div className="flex min-w-max courses-container">
+        <div className="flex min-w-max">
           {courses.map((course, index) => (
             <div
               key={index}
-              className="border-r border-l border-black relative h-[550px] flex items-center justify-center max-w-[450px] w-full flex-shrink-0"
+              className="border-r border-l border-black relative h-[400px] sm:h-[450px] lg:h-[550px] flex items-center justify-center w-[300px] sm:w-[350px] lg:w-[450px] flex-shrink-0"
             >
-              <span className="text-black bg-amber-400 rounded-tl-full rounded-bl-full absolute top-5 right-0 p-2">
+              <span className="text-black bg-amber-400 rounded-tl-full rounded-bl-full absolute top-3 sm:top-4 lg:top-5 right-0 p-1 sm:p-2 text-xs sm:text-sm">
                 ⭐ {course.rating}
               </span>
-              <div className="w-[90%] h-[85%] border rounded-lg border-black flex flex-col items-center justify-center py-5">
+              <div className="w-[90%] h-[85%] border rounded-lg border-black flex flex-col items-center justify-center py-3 sm:py-4 lg:py-5">
                 <div className="w-[90%] h-1/2">
                   <div className="w-full h-full border border-black rounded-lg overflow-hidden">
                     <img
@@ -271,14 +269,14 @@ const Courses = () => {
                   </div>
                 </div>
                 <div className="w-[90%] h-1/2 flex flex-col justify-around">
-                  <h1 className="mt-5 text-xl font-bold w-full">
+                  <h1 className="mt-3 sm:mt-4 lg:mt-5 text-base sm:text-lg lg:text-xl font-bold w-full">
                     {course.title}
                   </h1>
-                  <p className="mt-2 text-base text-gray-400/50">
+                  <p className="mt-1 sm:mt-2 text-xs sm:text-sm lg:text-base text-gray-400/50">
                     {course.description}
                   </p>
                   <div className="w-full">
-                    <button className="border border-black rounded-full px-8 py-2">
+                    <button className="border border-black rounded-full px-4 sm:px-6 lg:px-8 py-1 sm:py-2 text-xs sm:text-sm">
                       Know More
                     </button>
                   </div>
@@ -290,20 +288,20 @@ const Courses = () => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-center items-center gap-4 mt-6">
+      <div className="flex justify-center items-center gap-4 mt-4 sm:mt-6">
         <button
           onClick={handlePrevious}
-          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex-center"
+          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
           aria-label="Previous cards"
         >
-          <HiChevronLeft size={24} />
+          <HiChevronLeft size={20} className="sm:h-6 sm:w-6" />
         </button>
         <button
           onClick={handleNext}
-          className="bg-[#a5ffaa] p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex-center"
+          className="bg-[#a5ffaa] p-2 sm:p-3 rounded-full border border-black border-b-3 transition-colors duration-200 flex items-center justify-center"
           aria-label="Next cards"
         >
-          <HiChevronRight size={24} />
+          <HiChevronRight size={20} className="sm:h-6 sm:w-6" />
         </button>
       </div>
     </section>

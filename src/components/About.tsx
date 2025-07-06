@@ -121,7 +121,9 @@ const About: React.FC = () => {
 
         // Simple hover animations for tutor cards
         Array.from(tutorCards).forEach((card: Element) => {
-          const circle = card.querySelector(".w-\\[200px\\]") as HTMLElement;
+          const circle = card.querySelector(
+            ".w-\\[150px\\],.w-\\[200px\\]"
+          ) as HTMLElement;
           if (circle) {
             const hoverTl = gsap.timeline({ paused: true });
 
@@ -186,14 +188,23 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div ref={aboutRef} className="w-full bg-blue-500 py-10 relative">
-      <div className="flex">
-        <div className="w-1/2 min-h-[60vh] flex-center pl-15">
-          <div className="w-[80%] text-white mx-auto">
-            <h1 ref={titleRef} className="text-5xl font-semibold mt-1">
+    <div
+      ref={aboutRef}
+      className="w-full bg-blue-500 py-6 sm:py-8 lg:py-10 relative px-4 sm:px-6 lg:px-8"
+    >
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-1/2 min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center pl-0 lg:pl-15">
+          <div className="w-full sm:w-[80%] text-white mx-auto">
+            <h1
+              ref={titleRef}
+              className="text-3xl sm:text-4xl lg:text-5xl font-semibold mt-1"
+            >
               About Our Tutor
             </h1>
-            <p ref={textRef} className="mt-6 font-light">
+            <p
+              ref={textRef}
+              className="mt-4 sm:mt-6 font-light text-sm sm:text-base lg:text-lg"
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
               necessitatibus eum voluptatem! Qui, eveniet illo. Voluptas ipsam
               adipisci reiciendis, vitae dolorum molestiae officia et, optio
@@ -201,142 +212,138 @@ const About: React.FC = () => {
               ullam voluptatibus quam. Temporibus, ut nemo aperiam expedita nisi
               accusantium veritatis soluta cum ipsam recusandae atque?
             </p>
-            <div ref={statsRef} className="grid grid-cols-2 gap-2 mt-6">
-              <div className="flex gap-5 items-center mt-4">
-                <div className="w-[100px] h-[100px] flex-center border border-black rounded-lg overflow-hidden">
+            <div
+              ref={statsRef}
+              className="grid grid-cols-2 gap-2 sm:gap-4 mt-4 sm:mt-6"
+            >
+              <div className="flex gap-3 sm:gap-5 items-center mt-4">
+                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
                   <img
                     src="https://placehold.co/100x100/ABFFA0/white?text=A"
                     alt="Instructors"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-semibold">300</h2>
-                  <p className="text-light">Instructors</p>
+                  <h2 className="text-2xl sm:text-3xl font-semibold">300</h2>
+                  <p className="text-light text-xs sm:text-sm">Instructors</p>
                 </div>
               </div>
-              <div className="flex gap-5 items-center">
-                <div className="w-[100px] h-[100px] flex-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-3 sm:gap-5 items-center">
+                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
                   <img
                     src="https://placehold.co/100x100/A0BEFF/white?text=B"
                     alt="Videos"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-semibold">10,000+</h2>
-                  <p className="text-light">Videos</p>
+                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                    10,000+
+                  </h2>
+                  <p className="text-light text-xs sm:text-sm">Videos</p>
                 </div>
               </div>
-              <div className="flex gap-5 items-center">
-                <div className="w-[100px] h-[100px] flex-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-3 sm:gap-5 items-center">
+                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
                   <img
                     src="https://placehold.co/100x100/A0BEFF/white?text=C"
                     alt="Students"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-semibold">20,000+</h2>
-                  <p className="text-light">Students</p>
+                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                    20,000+
+                  </h2>
+                  <p className="text-light text-xs sm:text-sm">Students</p>
                 </div>
               </div>
-              <div className="flex gap-5 items-center">
-                <div className="w-[100px] h-[100px] flex-center border border-black rounded-lg overflow-hidden">
+              <div className="flex gap-3 sm:gap-5 items-center">
+                <div className="w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden">
                   <img
                     src="https://placehold.co/100x100/ABFFA0/white?text=D"
                     alt="Users"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-semibold">1,00,000+</h2>
-                  <p className="text-light">Users</p>
+                  <h2 className="text-2xl sm:text-3xl font-semibold">
+                    1,00,000+
+                  </h2>
+                  <p className="text-light text-xs sm:text-sm">Users</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-1/2 min-h-[60vh] flex-center">
+        <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center mt-6 lg:mt-0">
           <div
             ref={shapeRef}
-            className="w-[250px] h-[350px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-4 before:-left-4"
+            className="w-[200px] sm:w-[250px] h-[250px] sm:h-[350px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-3 sm:before:-top-4 before:-left-3 sm:before:-left-4"
           ></div>
         </div>
       </div>
-      <div className="min-h-[40vh] w-full">
-        <h1 className="w-full text-center font-semibold text-5xl text-white mt-2">
+      <div className="min-h-[40vh] w-full mt-6 sm:mt-8 lg:mt-10">
+        <h1 className="w-full text-center font-semibold text-3xl sm:text-4xl lg:text-5xl text-white mt-2">
           Our Tutors
         </h1>
         <div
           ref={tutorsRef}
-          className="w-[80%] mx-auto flex justify-around gap-3 mt-8"
+          className="w-full sm:w-[80%] mx-auto flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10 mt-6 sm:mt-8"
         >
-          <div className="flex flex-col items-center">
-            <div className="w-[200px] h-[200px] rounded-full outline-2 outline-white outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-            <div className="text-center mt-6">
-              <h3 className="text-white font-semibold text-xl">John Smith</h3>
-              <p className="text-white/80 text-sm mt-1">Senior Developer</p>
+          {[
+            { name: "John Smith", role: "Senior Developer" },
+            { name: "Sarah Johnson", role: "UI/UX Designer" },
+            { name: "Mike Davis", role: "Data Scientist" },
+            { name: "Emily Chen", role: "DevOps Engineer" },
+            { name: "Alex Rodriguez", role: "Product Manager" },
+          ].map((tutor, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center w-[150px] sm:w-[180px] lg:w-[200px]"
+            >
+              <div className="w-[150px] sm:w-[180px] lg:w-[200px] h-[150px] sm:h-[180px] lg:h-[200px] rounded-full outline-2 outline-white outline-offset-8 sm:outline-offset-12 lg:outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
+              <div className="text-center mt-4 sm:mt-6">
+                <h3 className="text-white font-semibold text-base sm:text-lg lg:text-xl">
+                  {tutor.name}
+                </h3>
+                <p className="text-white/80 text-xs sm:text-sm mt-1">
+                  {tutor.role}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[200px] h-[200px] rounded-full outline-2 outline-white outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-            <div className="text-center mt-6">
-              <h3 className="text-white font-semibold text-xl">
-                Sarah Johnson
-              </h3>
-              <p className="text-white/80 text-sm mt-1">UI/UX Designer</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[200px] h-[200px] rounded-full outline-2 outline-white outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-            <div className="text-center mt-6">
-              <h3 className="text-white font-semibold text-xl">Mike Davis</h3>
-              <p className="text-white/80 text-sm mt-1">Data Scientist</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[200px] h-[200px] rounded-full outline-2 outline-white outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-            <div className="text-center mt-6">
-              <h3 className="text-white font-semibold text-xl">Emily Chen</h3>
-              <p className="text-white/80 text-sm mt-1">DevOps Engineer</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[200px] h-[200px] rounded-full outline-2 outline-white outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-            <div className="text-center mt-6">
-              <h3 className="text-white font-semibold text-xl">
-                Alex Rodriguez
-              </h3>
-              <p className="text-white/80 text-sm mt-1">Product Manager</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
       {/* Infinite scroll section */}
-      <div className="w-full h-[100px] bg-black text-white absolute -bottom-25 overflow-hidden">
+      <div className="w-full h-[80px] sm:h-[100px] bg-black text-white absolute left-0 -bottom-20 sm:-bottom-25 overflow-hidden">
         <div
           ref={scrollRef}
           className="flex items-center h-full whitespace-nowrap"
         >
-          <div className="flex items-center gap-2 mx-16 flex-shrink-0">
-            <div className="w-[50px] h-[50px] rounded-full bg-blue-500"></div>
-            <h2 className="text-white font-semibold text-4xl">
+          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
+            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-blue-500"></div>
+            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
               80% Placement Success Rate
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-16 flex-shrink-0">
-            <div className="w-[50px] h-[50px] rounded-full bg-green-500"></div>
-            <h2 className="text-white font-semibold text-4xl">
+          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
+            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-green-500"></div>
+            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
               Expert Instructors
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-16 flex-shrink-0">
-            <div className="w-[50px] h-[50px] rounded-full bg-yellow-500"></div>
-            <h2 className="text-white font-semibold text-4xl">
+          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
+            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-yellow-500"></div>
+            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
               24/7 Support Available
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-16 flex-shrink-0">
-            <div className="w-[50px] h-[50px] rounded-full bg-purple-500"></div>
-            <h2 className="text-white font-semibold text-4xl">
+          <div className="flex items-center gap-2 mx-8 sm:mx-16 flex-shrink-0">
+            <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full bg-purple-500"></div>
+            <h2 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl">
               Industry Leading Curriculum
             </h2>
           </div>
