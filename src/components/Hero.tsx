@@ -7,12 +7,13 @@ const Hero = () => {
           <div className="space-y-6 z-10 relative text-left order-2 lg:order-1">
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl font-normal text-gray-900 leading-tight">
-                Join <span className="font-bold">10,000+</span> learners
-                transforming their careers with FocasEdu
+                Get Personal Tutoring, Join the{" "}
+                <span className="font-bold">70%</span>Who Cleared CA Exams with
+                <span className="font-bold ml-1.5">FOCAS</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed">
-                Accelerate your future with job-ready skills, expert guidance,
-                and hands-on learning.
+                Learn at your own pace with expert-guided sessions, personalised
+                tutor tracking, and 100% syllabus coverage.
               </p>
             </div>
 

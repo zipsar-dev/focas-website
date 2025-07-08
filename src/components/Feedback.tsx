@@ -45,7 +45,7 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
         <img
           src="/images/quote.png"
           alt=""
-          className="w-[50px] sm:w-[60px] lg:w-[75px]"
+          className="w-[50px] sm:w-[60px] lg:w-[75px] object-fill"
         />
         <p className="font-light text-xs sm:text-sm lg:text-base">{feedback}</p>
         <div>
@@ -66,31 +66,39 @@ const Feedback = () => {
 
   const mockData: Card[] = [
     {
-      student: "Alex",
+      student: "Yashika",
       batch: "2024",
-      Userimage: "https://placehold.co/350x350",
+      Userimage: "images/Testimonial/Yakshika.jpeg",
       feedback:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quae dolor fugit laborum aut eligendi repellendus laboriosam. Debitis, eos magni!",
+        "The method of teaching followed by Focas academy is perfect and Trust me I was able to score 82 just by enrolling in their fasttrack then imagine how their regular course would be.",
     },
     {
-      student: "Bella",
+      student: "Aravindha lochanan",
       batch: "2023",
-      Userimage: "https://placehold.co/350x350",
+      Userimage: "/images/Testimonial/Aravind lochan.jpg",
       feedback:
-        "Great experience! The courses are well-structured and the faculty is amazing.",
+        "Best mentorship with coaching for struggling students with last minute pending syllabus and repeaters. Can trust FOCAS for best ever preparation for upcoming attempt. Friends in my close circle also greatly benefited from this individual attention led batches by the mentors. Join focas make it ur last attempt",
     },
     {
-      student: "Charlie",
+      student: "Mercy",
       batch: "2022",
-      Userimage: "https://placehold.co/350x350",
+      Userimage: "images/Testimonial/Mercy.jpeg",
       feedback:
-        "Highly recommend! Learned so much and the support was excellent.",
+        "Really happy and satisfied with the tutors we have is really good,the way of teaching here is enough+only one time oversee that effective And the concept behind deep focas grb is too good and gained confidence Which I always wanted for, is the repetitive starting just 1 month prior to exams But lacked when I tried on my own pace",
     },
     {
-      student: "Dana",
+      student: "Naveen",
       batch: "2021",
-      Userimage: "https://placehold.co/350x350",
-      feedback: "Fantastic learning platform with great resources.",
+      Userimage: "images/Testimonial/Naveen.jpeg",
+      feedback:
+        "I was able to complete preparation in Class itself, because it was live studying and NO procrastination. Got rid of confusions in the class itself as there were discussions of Q&A at the end of every topic. Was able to recall at least 75% in the exams because of the cumulative revisions we did in the class. FOCAS Classes is something that would work for me.",
+    },
+    {
+      student: "Jagadeesh",
+      batch: "2022",
+      Userimage: "images/Testimonial/Jagadeesh.jpeg",
+      feedback:
+        "FOCAS helped me to study at the best possible way .Their tutor session was really helpful for me to get out of vicious circle of audit! I thought of quiting CA because of audit, but because of them, I can able to study it.Thanks FOCAS team!",
     },
   ];
 

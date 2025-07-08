@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({
   certificateImage,
 }) => {
   return (
-    <div className="card-item bg-gray-100 rounded-2xl py-3 px-2 relative w-full max-w-[700px] lg:w-[700px] md:w-[600px] sm:w-[500px] max-h-[400px] border border-black flex flex-col sm:flex-row justify-between items-center">
+    <div className="card-item bg-gray-100 rounded-2xl py-3 px-2 relative w-[350px] max-w-[700px] lg:w-[700px] md:w-[600px] max-h-[400px] border border-black flex flex-col sm:flex-row justify-between items-center flex-shrink-0">
       {/* Percentage Badge */}
       <div className="percentage-badge wavy-circle absolute -top-5 sm:-top-10 -left-5 sm:-left-10 bg-blue-500 text-lg sm:text-2xl text-white flex-center z-10">
         {percent}%
@@ -58,7 +58,7 @@ const Stories = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Sample data for cards
   const cardData = [
@@ -66,76 +66,54 @@ const Stories = () => {
       name: "Anupriya",
       batch: "2025",
       percent: 99,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Anupriya",
-      certificateImage: "images/Anupriya.jpg",
+      personImage: "images/Students/Anupriya.jpg",
+      certificateImage: "images/Certificates/Anupriya.jpg",
     },
     {
       name: "Gowtham",
       batch: "2024",
       percent: 95,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Gowtham",
-      certificateImage: "images/Gowtham .jpeg",
+      personImage: "images/Students/Gowtham.jpg",
+      certificateImage: "images/Certificates/Gowtham .jpeg",
     },
     {
       name: "Kavitha",
       batch: "2023",
       percent: 97,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Kavitha",
-      certificateImage: "images/kavitha.jpeg",
+      personImage: "images/Students/Kavitha.jpg",
+      certificateImage: "images/Certificates/kavitha.jpeg",
     },
     {
       name: "Manjunath",
       batch: "2024",
       percent: 95,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Manjunath",
-      certificateImage: "images/Manjunath Marksheet  (1).jpeg",
+      personImage: "images/Students/Manjunath.jpeg",
+      certificateImage: "images/Certificates/Manjunath Marksheet  (1).jpeg",
     },
     {
       name: "Mathumatha",
       batch: "2023",
       percent: 97,
-      personImage: "https://placehold.co/350x380/D6D6D6/white?text=Mathumatha",
-      certificateImage: "images/Mathumetha.jpeg",
+      personImage: "images/Students/MathumethImg.jpeg",
+      certificateImage: "images/Certificates/Mathumetha.jpeg",
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(innerWidth < 768);
-    };
-
-    checkMobile();
-    addEventListener("resize", checkMobile);
-
-    return () => removeEventListener("resize", checkMobile);
-  }, []);
-
-  // GSAP animations with timeline
   useEffect(() => {
     const initGSAPAnimations = () => {
-      // Create GSAP timeline
       const tl = gsap.timeline();
 
       if (gsap) {
-        // Initial setup - hide elements
-        gsap.set(
-          [titleRef.current, capRef.current, ".card-item", buttonsRef.current],
-          {
-            opacity: 0,
-          }
-        );
+        gsap.set([titleRef.current, capRef.current, buttonsRef.current], {
+          opacity: 0,
+        });
 
-        // Animate title
         tl.fromTo(
           titleRef.current,
           { opacity: 0, y: 50 },
           { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
         );
 
-        // Animate cap with bounce
         tl.fromTo(
           capRef.current,
           { opacity: 0, y: -30, rotation: -15 },
@@ -143,36 +121,6 @@ const Stories = () => {
           "-=0.4"
         );
 
-        // Animate cards with stagger
-        tl.fromTo(
-          ".card-item",
-          { opacity: 0, y: 50, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.2,
-            ease: "power2.out",
-            onComplete: () => {
-              // Animate percentage badges
-              gsap.fromTo(
-                ".percentage-badge",
-                { scale: 0, rotation: 180 },
-                {
-                  scale: 1,
-                  rotation: 0,
-                  duration: 0.5,
-                  stagger: 0.1,
-                  ease: "back.out(1.7)",
-                }
-              );
-            },
-          },
-          "-=0.2"
-        );
-
-        // Animate buttons
         tl.fromTo(
           buttonsRef.current,
           { opacity: 0, y: 20 },
@@ -182,7 +130,6 @@ const Stories = () => {
       }
     };
 
-    // Load GSAP
     if (!gsap) {
       const script = document.createElement("script");
       script.src =
@@ -196,88 +143,66 @@ const Stories = () => {
     }
   }, []);
 
-  // GSAP card transition animations
-  const animateCardTransition = (direction: "next" | "prev") => {
-    if (isAnimating || !gsap) return;
+  const slideToIndex = (index: number) => {
+    if (isAnimating || !cardsContainerRef.current) return;
     setIsAnimating(true);
 
-    const cards = document.querySelectorAll(".card-item");
-    const translateX = direction === "next" ? -50 : 50;
+    // Calculate actual card width based on screen size
+    const getActualCardWidth = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth >= 1024) return 400 + 60; // lg:w-[700px] + gap
+        if (window.innerWidth >= 768) return 500 + 120; // md:w-[600px] + gap
+        if (window.innerWidth <= 640) return 350 + 25; // sm:w-[500px] + gap
+      }
+      return 740; // fallback
+    };
 
-    // Exit animation
-    gsap.to(cards, {
+    const cardWidth = getActualCardWidth();
+    const containerWidth =
+      cardsContainerRef.current.parentElement?.offsetWidth || 0;
+
+    // Calculate translation - for last card, prevent extra space
+    let translateX = -index * cardWidth;
+
+    if (index === cardData.length - 1) {
+      const totalWidth = cardData.length * cardWidth;
+      const maxTranslateX = totalWidth - containerWidth;
+      translateX = Math.min(-maxTranslateX, translateX);
+    }
+
+    gsap.to(cardsContainerRef.current, {
       x: translateX,
-      scale: 0.8,
-      opacity: 0.5,
-      duration: 0.4,
-      ease: "power2.in",
+      duration: 0.6,
+      ease: "power2.out",
       onComplete: () => {
-        // Update current index
-        if (direction === "next") {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
-        } else {
-          setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
-          );
-        }
-
-        // Enter animation
-        setTimeout(() => {
-          gsap.fromTo(
-            cards,
-            { x: -translateX, scale: 0.9, opacity: 0 },
-            {
-              x: 0,
-              scale: 1,
-              opacity: 1,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: "power2.out",
-              onComplete: () => {
-                // Animate percentage badges
-                gsap.fromTo(
-                  ".percentage-badge",
-                  { scale: 0, rotation: 180 },
-                  {
-                    scale: 1,
-                    rotation: 0,
-                    duration: 0.4,
-                    stagger: 0.05,
-                    ease: "back.out(1.7)",
-                  }
-                );
-                setIsAnimating(false);
-              },
-            }
-          );
-        }, 100);
+        setIsAnimating(false);
       },
     });
   };
 
-  // Function to get visible cards (responsive)
-  const getVisibleCards = () => {
-    const visibleCards = [];
-    const cardsToShow = isMobile ? 1 : 3;
-
-    for (let i = 0; i < cardsToShow; i++) {
-      const index = (currentIndex + i) % cardData.length;
-      visibleCards.push(cardData[index]);
-    }
-    return visibleCards;
-  };
-
-  // Function to handle previous button click
   const handlePrevious = () => {
-    animateCardTransition("prev");
+    const newIndex =
+      currentIndex === 0 ? cardData.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+    slideToIndex(newIndex);
   };
 
-  // Function to handle next button click
   const handleNext = () => {
-    animateCardTransition("next");
+    const newIndex =
+      currentIndex === cardData.length - 1 ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+    slideToIndex(newIndex);
   };
 
-  const visibleCards = getVisibleCards();
+  // Handle window resize to recalculate positions
+  useEffect(() => {
+    const handleResize = () => {
+      slideToIndex(currentIndex);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [currentIndex]);
 
   return (
     <div className="min-h-[80vh] w-full mt-10 px-4 sm:px-6 lg:px-8">
@@ -296,21 +221,24 @@ const Stories = () => {
         </h1>
       </div>
 
-      {/* Cards Container */}
-      <div
-        ref={cardsContainerRef}
-        className="mt-8 sm:mt-15 flex flex-col lg:flex-row gap-6 sm:gap-10 justify-center items-center"
-      >
-        {visibleCards.map((card, index) => (
-          <Card
-            key={`${card.name}-${currentIndex + index}`}
-            name={card.name}
-            batch={card.batch}
-            percent={card.percent}
-            personImage={card.personImage}
-            certificateImage={card.certificateImage}
-          />
-        ))}
+      {/* Cards Container Wrapper */}
+      <div className="mt-8 sm:mt-15">
+        <div
+          ref={cardsContainerRef}
+          className="flex gap-6 sm:gap-10 transition-transform duration-300 ease-out"
+          style={{ width: `${cardData.length * 730}px` }}
+        >
+          {cardData.map((card, index) => (
+            <Card
+              key={`${card.name}-${index}`}
+              name={card.name}
+              batch={card.batch}
+              percent={card.percent}
+              personImage={card.personImage}
+              certificateImage={card.certificateImage}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Navigation Buttons */}
@@ -320,7 +248,6 @@ const Stories = () => {
       >
         <button
           onClick={handlePrevious}
-          disabled={isAnimating}
           className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Previous cards"
         >
@@ -329,7 +256,6 @@ const Stories = () => {
 
         <button
           onClick={handleNext}
-          disabled={isAnimating}
           className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Next cards"
         >
