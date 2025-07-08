@@ -79,38 +79,6 @@ const About: React.FC = () => {
       });
     }
 
-    // Infinite scroll animation
-    if (scrollRef.current) {
-      const scrollContainer = scrollRef.current;
-
-      setTimeout(() => {
-        const scrollElements = Array.from(scrollContainer.children);
-
-        scrollElements.forEach((element: Element) => {
-          const clone = element.cloneNode(true);
-          scrollContainer.appendChild(clone);
-        });
-
-        let totalWidth = 0;
-        scrollElements.forEach((element: Element) => {
-          totalWidth += element.getBoundingClientRect().width;
-        });
-
-        let currentX = 0;
-
-        const animate = () => {
-          currentX -= 1;
-          if (currentX <= -totalWidth) {
-            currentX = 0;
-          }
-          scrollContainer.style.transform = `translateX(${currentX}px)`;
-          requestAnimationFrame(animate);
-        };
-
-        animate();
-      }, 100);
-    }
-
     // Floating animation for stats
     if (statsRef.current) {
       const statsNumbers = statsRef.current.querySelectorAll("h2");
@@ -132,12 +100,61 @@ const About: React.FC = () => {
         }
       });
     }
+
+    // Infinite scroll animation
+    if (scrollRef.current) {
+      const scrollContainer = scrollRef.current;
+
+      // Wait for the DOM to be fully rendered
+      const setupScroll = () => {
+        // Get all child elements
+        const scrollElements = Array.from(
+          scrollContainer.children
+        ) as HTMLElement[];
+
+        // Clone elements to create a seamless loop
+        scrollElements.forEach((element) => {
+          const clone = element.cloneNode(true) as HTMLElement;
+          scrollContainer.appendChild(clone);
+        });
+
+        // Calculate total width of original elements
+        let totalWidth = 0;
+        scrollElements.forEach((element) => {
+          const style = window.getComputedStyle(element);
+          const marginLeft = parseFloat(style.marginLeft) || 0;
+          const marginRight = parseFloat(style.marginRight) || 0;
+          totalWidth += element.offsetWidth + marginLeft + marginRight;
+        });
+
+        let currentX = 0;
+        const speed = 1; // Adjust scroll speed (pixels per frame)
+
+        const animate = () => {
+          currentX -= speed;
+          if (currentX <= -totalWidth) {
+            currentX += totalWidth; // Reset to start of original content
+          }
+          scrollContainer.style.transform = `translateX(${currentX}px)`;
+          requestAnimationFrame(animate);
+        };
+
+        // Start animation
+        requestAnimationFrame(animate);
+      };
+
+      // Use a small delay to ensure DOM is ready
+      const timeoutId = setTimeout(setupScroll, 100);
+
+      // Cleanup on unmount
+      return () => clearTimeout(timeoutId);
+    }
   }, []);
 
   return (
     <div
       ref={aboutRef}
-      className="w-full bg-blue-500 py-4 sm:py-6 md:py-8 lg:py-10 relative px-3 sm:px-4 md:px-6 lg:px-8 overflow-hidden"
+      className="w-full bg-blue-500 py-4 sm:py-6 md:py-8 lg:py-10 relative px-3 sm:px-4 md:px-6 lg:px-8"
     >
       {/* Zigzag Grid Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -243,9 +260,30 @@ const About: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10">
-        <div className="flex flex-col lg:flex-row">
-          <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center pl-0 lg:pl-15">
+      <div className="relative heti z-10">
+        <div className="flex flex-col lg:flex-row w-[80%] mx-auto">
+          {/* Mobile: Image first, Desktop: Image second */}
+          <div className="w-full lg:w-1/2 min-h-[30vh] sm:min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center order-1 lg:order-2 mb-4 lg:mb-0 lg:mt-0">
+            {/* illustration with image overlay */}
+            <div className="relative">
+              <div
+                ref={shapeRef}
+                className="w-[180px] sm:w-[210px] md:w-[230px] lg:w-[280px] h-[210px] sm:h-[250px] md:h-[280px] lg:h-[380px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-2 sm:before:-top-3 md:before:-top-3 lg:before:-top-4 before:-left-2 sm:before:-left-3 md:before:-left-3 lg:before:-left-4"
+              ></div>
+
+              {/* Image overlay */}
+              <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <img
+                  src="images/Tutor/Group.png"
+                  alt="Tutor illustration"
+                  className="w-[100%] object-cover shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Content second, Desktop: Content first */}
+          <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex-start order-2 lg:order-1">
             <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] text-white mx-auto">
               <h1
                 ref={titleRef}
@@ -257,17 +295,17 @@ const About: React.FC = () => {
                 ref={textRef}
                 className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 font-light text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed"
               >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestiae necessitatibus eum voluptatem! Qui, eveniet illo.
-                Voluptas ipsam adipisci reiciendis, vitae dolorum molestiae
-                officia et, optio cupiditate inventore veritatis nihil? A, vitae
-                commodi! Quo fugiat ullam voluptatibus quam. Temporibus, ut nemo
-                aperiam expedita nisi accusantium veritatis soluta cum ipsam
-                recusandae atque?
+                At <span className="font-semibold">FOCAS</span>, our Academic
+                Team is the backbone of student success. These are not just
+                subject experts—they're dedicated faculties, tutors, mentors who
+                track your progress, clear every doubt, and guide you with
+                strategy and precision. With structured faculty videos,
+                personalised tutor sessions and a results-driven approach, they
+                ensure your preparation is complete and confident.
               </p>
               <div
                 ref={statsRef}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6"
+                className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6"
               >
                 <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-4">
                   <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
@@ -279,12 +317,12 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
-                      300
+                      30+
                     </h2>
-                    <p className="text-light text-xs sm:text-sm">Instructors</p>
+                    <p className="text-light text-xs sm:text-sm">Educators</p>
                   </div>
                 </div>
-                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-0">
+                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-4">
                   <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                     <img
                       src="https://placehold.co/100x100/A0BEFF/white?text=B"
@@ -294,9 +332,11 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
-                      10,000+
+                      1,000+
                     </h2>
-                    <p className="text-light text-xs sm:text-sm">Videos</p>
+                    <p className="text-light text-xs sm:text-sm">
+                      Hours Taught
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
@@ -309,9 +349,11 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
-                      20,000+
+                      300+
                     </h2>
-                    <p className="text-light text-xs sm:text-sm">Students</p>
+                    <p className="text-light text-xs sm:text-sm">
+                      Students Taught
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
@@ -324,19 +366,15 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
-                      1,00,000+
+                      70%
                     </h2>
-                    <p className="text-light text-xs sm:text-sm">Users</p>
+                    <p className="text-light text-xs sm:text-sm">
+                      Students PASS
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="w-full lg:w-1/2 min-h-[30vh] sm:min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center mt-4 sm:mt-6 lg:mt-0">
-            <div
-              ref={shapeRef}
-              className="w-[150px] sm:w-[180px] md:w-[200px] lg:w-[250px] h-[180px] sm:h-[220px] md:h-[250px] lg:h-[350px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-2 sm:before:-top-3 md:before:-top-3 lg:before:-top-4 before:-left-2 sm:before:-left-3 md:before:-left-3 lg:before:-left-4"
-            ></div>
           </div>
         </div>
         <div className="min-h-[30vh] sm:min-h-[35vh] md:min-h-[40vh] w-full mt-4 sm:mt-6 md:mt-8 lg:mt-10">
@@ -374,33 +412,36 @@ const About: React.FC = () => {
       </div>
 
       {/* Infinite scroll section */}
-      <div className="w-full h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] bg-black text-white absolute left-0 -bottom-15 sm:-bottom-18 md:-bottom-20 lg:-bottom-25 overflow-hidden">
+      <div className="w-full h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] bg-black text-white absolute left-0 -bottom-20">
         <div
           ref={scrollRef}
-          className="flex items-center h-full whitespace-nowrap"
+          className="flex items-center h-full whitespace-nowrap absolute scroll-container"
+          style={{ willChange: "transform" }}
         >
           <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
             <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-blue-500 flex-shrink-0"></div>
             <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              80% Placement Success Rate
+              Study Like Never Before with FOCAS
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
             <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-green-500 flex-shrink-0"></div>
             <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              Expert Instructors
+              Get mentored by top-tier teachers for CA Foundation, CA
+              Intermediate, and CA Final
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
             <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-yellow-500 flex-shrink-0"></div>
             <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              24/7 Support Available
+              Structured videos. Personal tutors. Zero guesswork.
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
             <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-purple-500 flex-shrink-0"></div>
             <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              Industry Leading Curriculum
+              At FOCAS, every student is tracked. Every doubt, cleared. Every
+              attempt, your best.
             </h2>
           </div>
         </div>

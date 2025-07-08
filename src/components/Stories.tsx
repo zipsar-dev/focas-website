@@ -150,7 +150,7 @@ const Stories = () => {
     // Calculate actual card width based on screen size
     const getActualCardWidth = () => {
       if (typeof window !== "undefined") {
-        if (window.innerWidth >= 1024) return 400 + 60; // lg:w-[700px] + gap
+        if (window.innerWidth >= 1024) return 520 + 20; // lg:w-[700px] + gap
         if (window.innerWidth >= 768) return 500 + 120; // md:w-[600px] + gap
         if (window.innerWidth <= 640) return 350 + 25; // sm:w-[500px] + gap
       }
@@ -205,7 +205,7 @@ const Stories = () => {
   }, [currentIndex]);
 
   return (
-    <div className="min-h-[80vh] w-full mt-10 px-4 sm:px-6 lg:px-8">
+    <div className="mb-10 lg:mb-20 w-full mt-10 px-4 sm:px-6 lg:px-8">
       <div className="w-full flex justify-center items-center py-6 sm:py-8">
         <h1
           ref={titleRef}
@@ -222,7 +222,7 @@ const Stories = () => {
       </div>
 
       {/* Cards Container Wrapper */}
-      <div className="mt-8 sm:mt-15">
+      <div className="mt-8 sm:mt-15 md:w-[80%] mx-auto">
         <div
           ref={cardsContainerRef}
           className="flex gap-6 sm:gap-10 transition-transform duration-300 ease-out"
