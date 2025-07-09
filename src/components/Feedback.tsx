@@ -29,7 +29,7 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
     };
   }, []);
   return (
-    <div className="w-[80vw] sm:w-[45vw] lg:w-[40vw] h-[30vh] sm:h-[45vh] lg:h-[40vh] rounded-xl flex items-center justify-around border border-black py-4 sm:py-5 px-2 sm:px-3 mx-2 sm:mx-3 lg:mx-4">
+    <div className="w-[80vw] mx-auto sm:w-[45vw] lg:w-[40vw] h-[30vh] sm:h-[45vh] lg:h-[40vh] rounded-xl flex items-center justify-around border border-black py-2 sm:py-3 px-2 sm:px-3 sm:mx-3 lg:mx-4">
       {!isMobileView ? (
         <div className="w-[40%] h-[95%]">
           <img
@@ -45,9 +45,9 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
         <img
           src="/images/quote.png"
           alt=""
-          className="w-[50px] sm:w-[60px] lg:w-[75px] object-fill"
+          className="w-[50px] sm:w-[60px] lg:w-[75px] object-fill hidden sm:block"
         />
-        <p className="font-light text-xs sm:text-sm lg:text-base">{feedback}</p>
+        <p className="font-light text-xs sm:text-sm lg:text-sm">{feedback}</p>
         <div>
           <h1 className="font-bold text-base sm:text-lg lg:text-xl">
             {student}

@@ -151,8 +151,8 @@ const SuccessStories: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-8 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-      <div className="text-center my-8 md:my-16 px-4">
+    <section className="w-full py-10 md:py-16 min-h-screen">
+      <div className="text-center mt-10 md:my-16 px-4">
         <h2
           ref={titleRef}
           className="text-3xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight"
@@ -161,97 +161,107 @@ const SuccessStories: React.FC = () => {
         </h2>
       </div>
 
-      <div className="relative px-4 md:px-8">
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide relative"
-          style={{ scrollBehavior: "smooth" }}
-        >
-          {stories.map((story, index) => (
-            <div
-              className="flex-center h-full w-[100vw] sm:w-[400px] md:w-[600px] border border-black py-3 md:py-5 md:px-10 flex-shrink-0"
-              key={index}
-            >
+      <div className="relative">
+        {/* Fixed: Added proper padding and removed problematic overflow */}
+        <div className="px-6 md:px-8">
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide relative"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            {stories.map((story, index) => (
               <div
-                ref={(el) => {
-                  cardsRef.current[index] = el;
-                }}
-                className={`flex-shrink-0 bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transition-all duration-500 ease-out snap-start ${
-                  isHovered === index ? "shadow-2xl" : ""
-                }`}
+                className="flex-center h-full w-[80vw] sm:w-[300px] md:w-[400px] py-3 md:py-5 md:px-10 flex-shrink-0"
+                key={index}
                 style={{
-                  width: "90%",
-                  aspectRatio: "9/16",
-                  minHeight: "400px",
-                  maxHeight: "600px",
+                  /* Fixed: Removed border that was causing visual issues */
+                  paddingLeft: index === 0 ? "0" : "12px",
+                  paddingRight: index === stories.length - 1 ? "0" : "12px",
                 }}
-                onClick={() => openVideoModal(story.video)}
-                onMouseEnter={() => handleCardHover(index, true)}
-                onMouseLeave={() => handleCardHover(index, false)}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    openVideoModal(story.video);
-                  }
-                }}
-                role="button"
-                aria-label={`Open video of ${story.name}`}
               >
-                <div className="absolute top-2 md:top-4 left-2 md:left-4 z-10">
-                  <div className="bg-black bg-opacity-70 text-white font-bold text-xs md:text-sm px-2 md:px-3 py-1 rounded-full backdrop-blur-sm">
-                    FOCAS
-                  </div>
-                </div>
-
-                <div className="relative h-full">
-                  <video
-                    src={story.video}
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                  />
-
-                  <div className="absolute abs-center inset-0 flex items-center justify-center transition-opacity duration-300">
-                    <div
-                      className={`bg-white bg-opacity-90 rounded-full p-3 md:p-4 shadow-2xl transform transition-all duration-300 ${
-                        isHovered === index ? "scale-110 bg-opacity-100" : ""
-                      }`}
-                    >
-                      <IoPlay
-                        className="w-6 h-6 md:w-8 md:h-8 text-gray-800 ml-1"
-                        fill="currentColor"
-                      />
+                <div
+                  ref={(el) => {
+                    cardsRef.current[index] = el;
+                  }}
+                  className={`flex-shrink-0 bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transition-all duration-500 ease-out snap-start ${
+                    isHovered === index ? "shadow-2xl" : ""
+                  }`}
+                  style={{
+                    width: "90%",
+                    aspectRatio: "9/16",
+                    minHeight: "400px",
+                    maxHeight: "600px",
+                    /* Fixed: Ensure cards are fully visible */
+                    margin: "0 auto",
+                  }}
+                  onClick={() => openVideoModal(story.video)}
+                  onMouseEnter={() => handleCardHover(index, true)}
+                  onMouseLeave={() => handleCardHover(index, false)}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openVideoModal(story.video);
+                    }
+                  }}
+                  role="button"
+                  aria-label={`Open video of ${story.name}`}
+                >
+                  <div className="absolute top-2 md:top-4 left-2 md:left-4 z-10">
+                    <div className="bg-black bg-opacity-70 text-white font-bold text-xs md:text-sm px-2 md:px-3 py-1 rounded-full backdrop-blur-sm">
+                      FOCAS
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
-                    <div className="text-center">
-                      <div className="bg-yellow-400 text-black font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-full mb-2 md:mb-3 inline-block shadow-lg">
-                        {story.score} Score
+                  <div className="relative h-full">
+                    <video
+                      src={story.video}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+
+                    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                      <div
+                        className={`bg-white bg-opacity-90 rounded-full p-3 md:p-4 shadow-2xl transform transition-all duration-300 ${
+                          isHovered === index ? "scale-110 bg-opacity-100" : ""
+                        }`}
+                      >
+                        <IoPlay
+                          className="w-6 h-6 md:w-8 md:h-8 text-gray-800 ml-1"
+                          fill="currentColor"
+                        />
                       </div>
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">
-                        {story.name}
-                      </h3>
-                      <p className="text-gray-300 text-xs md:text-sm">
-                        {story.batch}
-                      </p>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                      <div className="text-center">
+                        <div className="bg-yellow-400 text-black font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-full mb-2 md:mb-3 inline-block shadow-lg">
+                          {story.score} Score
+                        </div>
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">
+                          {story.name}
+                        </h3>
+                        <p className="text-gray-300 text-xs md:text-sm">
+                          {story.batch}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="flex justify-center gap-3 md:gap-4 mt-6 md:mt-8 px-4">
           <button
             onClick={() => scroll("left")}
             aria-label="Previous videos"
-            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-3"
+            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-4 shadow-lg"
             type="button"
           >
             <IoChevronBack className="w-5 h-5 md:w-6 md:h-6" />
@@ -259,7 +269,7 @@ const SuccessStories: React.FC = () => {
           <button
             onClick={() => scroll("right")}
             aria-label="Next videos"
-            className="rounded-full p-3 md:p-4 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-3"
+            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-4 shadow-lg"
             type="button"
           >
             <IoChevronForward className="w-5 h-5 md:w-6 md:h-6" />
@@ -312,19 +322,27 @@ const SuccessStories: React.FC = () => {
           display: none;
         }
         
+        /* Fixed: Better responsive behavior */
         @media (max-width: 768px) {
           .scrollbar-hide {
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
           }
         }
         
-        /* Ensure smooth scrolling on mobile */
+        /* Fixed: Improved mobile scrolling */
         @media (max-width: 640px) {
           .scrollbar-hide {
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
           }
+        }
+
+        /* Fixed: Ensure cards are fully visible */
+        .flex-center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       `}</style>
     </section>

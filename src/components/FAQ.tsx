@@ -52,7 +52,7 @@ const FAQ: React.FC = () => {
     <div className="pt-16">
       {/* Header */}
       <div className="text-center mb-12 relative">
-        <h1 className="text-3 xl md:text-5xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
           Frequently Asked Questions
         </h1>
       </div>

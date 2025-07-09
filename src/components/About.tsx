@@ -105,20 +105,16 @@ const About: React.FC = () => {
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current;
 
-      // Wait for the DOM to be fully rendered
       const setupScroll = () => {
-        // Get all child elements
         const scrollElements = Array.from(
           scrollContainer.children
         ) as HTMLElement[];
 
-        // Clone elements to create a seamless loop
         scrollElements.forEach((element) => {
           const clone = element.cloneNode(true) as HTMLElement;
           scrollContainer.appendChild(clone);
         });
 
-        // Calculate total width of original elements
         let totalWidth = 0;
         scrollElements.forEach((element) => {
           const style = window.getComputedStyle(element);
@@ -128,25 +124,21 @@ const About: React.FC = () => {
         });
 
         let currentX = 0;
-        const speed = 1; // Adjust scroll speed (pixels per frame)
+        const speed = 1;
 
         const animate = () => {
           currentX -= speed;
           if (currentX <= -totalWidth) {
-            currentX += totalWidth; // Reset to start of original content
+            currentX += totalWidth;
           }
           scrollContainer.style.transform = `translateX(${currentX}px)`;
           requestAnimationFrame(animate);
         };
 
-        // Start animation
         requestAnimationFrame(animate);
       };
 
-      // Use a small delay to ensure DOM is ready
       const timeoutId = setTimeout(setupScroll, 100);
-
-      // Cleanup on unmount
       return () => clearTimeout(timeoutId);
     }
   }, []);
@@ -154,7 +146,7 @@ const About: React.FC = () => {
   return (
     <div
       ref={aboutRef}
-      className="w-full bg-blue-500 py-4 sm:py-6 md:py-8 lg:py-10 relative px-3 sm:px-4 md:px-6 lg:px-8"
+      className="w-full bg-blue-500 py-4 sm:py-6 md:py-8 lg:py-10 relative"
     >
       {/* Zigzag Grid Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -168,7 +160,6 @@ const About: React.FC = () => {
               height="40"
               patternUnits="userSpaceOnUse"
             >
-              {/* Vertical lines */}
               <line
                 x1="0"
                 y1="0"
@@ -193,8 +184,6 @@ const About: React.FC = () => {
                 stroke="white"
                 strokeWidth="0.5"
               />
-
-              {/* Horizontal lines */}
               <line
                 x1="0"
                 y1="0"
@@ -219,8 +208,6 @@ const About: React.FC = () => {
                 stroke="white"
                 strokeWidth="0.5"
               />
-
-              {/* Zigzag diagonal lines */}
               <path
                 d="M0,0 L10,10 L20,0 L30,10 L40,0"
                 stroke="white"
@@ -239,8 +226,6 @@ const About: React.FC = () => {
                 strokeWidth="0.5"
                 fill="none"
               />
-
-              {/* Reverse zigzag */}
               <path
                 d="M0,10 L10,0 L20,10 L30,0 L40,10"
                 stroke="white"
@@ -260,40 +245,37 @@ const About: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative heti z-10">
-        <div className="flex flex-col lg:flex-row w-[80%] mx-auto">
+      <div className="relative z-10">
+        <div className="flex flex-col lg:flex-row w-[90%] sm:w-[85%] md:w-[80%] mx-auto">
           {/* Mobile: Image first, Desktop: Image second */}
-          <div className="w-full lg:w-1/2 min-h-[30vh] sm:min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center order-1 lg:order-2 mb-4 lg:mb-0 lg:mt-0">
-            {/* illustration with image overlay */}
-            <div className="relative">
+          <div className="w-full lg:w-1/2 min-h-[35vh] flex-center order-1 lg:order-2 mb-4 lg:mb-0">
+            <div className="w-full h-full relative">
               <div
                 ref={shapeRef}
-                className="w-[180px] sm:w-[210px] md:w-[230px] lg:w-[280px] h-[210px] sm:h-[250px] md:h-[280px] lg:h-[380px] bg-[#a5ffaa] border-2 border-black rounded-t-full relative before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-2 sm:before:-top-3 md:before:-top-3 lg:before:-top-4 before:-left-2 sm:before:-left-3 md:before:-left-3 lg:before:-left-4"
+                className="abs-center w-[60%] h-[250px] lg:w-[50%] lg:h-[380px] bg-[#a5ffaa] border-2 border-black rounded-t-full before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-[0.5rem] sm:before:-top-[0.75rem] md:before:-top-[1rem] before:-left-[0.5rem] sm:before:-left-[0.75rem] md:before:-left-[1rem]"
               ></div>
-
-              {/* Image overlay */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+              <div className="absolute inset-0 z-10 pointer-events-none">
                 <img
                   src="images/Tutor/Group.png"
                   alt="Tutor illustration"
-                  className="w-[100%] object-cover shadow-lg"
+                  className="w-[90%] h-[230px] lg:w-[50%] lg:h-[380px] abs-center object-cover"
                 />
               </div>
             </div>
           </div>
 
           {/* Mobile: Content second, Desktop: Content first */}
-          <div className="w-full lg:w-1/2 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex-start order-2 lg:order-1">
-            <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] text-white mx-auto">
+          <div className="w-full lg:w-1/2 min-h-[35vh] sm:min-h-[40vh] md:min-h-[45vh] flex flex-col justify-start order-2 lg:order-1">
+            <div className="w-full text-white mx-auto">
               <h1
                 ref={titleRef}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mt-1"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-1"
               >
                 About Our Tutor
               </h1>
               <p
                 ref={textRef}
-                className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 font-light text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed"
+                className="mt-3 sm:mt-4 md:mt-5 font-light text-xs sm:text-sm md:text-base leading-relaxed"
               >
                 At <span className="font-semibold">FOCAS</span>, our Academic
                 Team is the backbone of student success. These are not just
@@ -307,31 +289,31 @@ const About: React.FC = () => {
                 ref={statsRef}
                 className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6"
               >
-                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-4">
-                  <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
+                <div className="flex gap-2 sm:gap-3 items-center mt-3">
+                  <div className="w-[12vw] sm:w-[10vw] bg-violet-100 md:w-[8vw] lg:w-[6vw] h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[6vw] max-w-[80px] max-h-[80px] min-w-[50px] min-h-[50px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                     <img
-                      src="https://placehold.co/100x100/ABFFA0/white?text=A"
+                      src="/images/graduateCap.svg"
                       alt="Instructors"
-                      className="w-full h-full object-cover"
+                      className="w-[80%] h-[80%] object-cover"
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
                       30+
                     </h2>
                     <p className="text-light text-xs sm:text-sm">Educators</p>
                   </div>
                 </div>
-                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3 sm:mt-4">
-                  <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
+                <div className="flex gap-2 sm:gap-3 items-center mt-3">
+                  <div className="w-[12vw] bg-white sm:w-[10vw] md:w-[8vw] lg:w-[6vw] h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[6vw] max-w-[80px] max-h-[80px] min-w-[50px] min-h-[50px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                     <img
-                      src="https://placehold.co/100x100/A0BEFF/white?text=B"
+                      src="/images/video.svg"
                       alt="Videos"
-                      className="w-full h-full object-cover"
+                      className="w-[80%] h-[80%] object-cover"
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
                       1,000+
                     </h2>
                     <p className="text-light text-xs sm:text-sm">
@@ -339,16 +321,16 @@ const About: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
-                  <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
+                <div className="flex gap-2 sm:gap-3 items-center mt-3">
+                  <div className="w-[12vw] sm:w-[10vw] bg-green-100 md:w-[8vw] lg:w-[6vw] h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[6vw] max-w-[80px] max-h-[80px] min-w-[50px] min-h-[50px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                     <img
-                      src="https://placehold.co/100x100/A0BEFF/white?text=C"
+                      src="images/graduateCap.svg"
                       alt="Students"
-                      className="w-full h-full object-cover"
+                      className="w-[80%] h-[80%] object-cover"
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
                       300+
                     </h2>
                     <p className="text-light text-xs sm:text-sm">
@@ -356,16 +338,16 @@ const About: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 items-center mt-3">
-                  <div className="w-[60px] sm:w-[70px] md:w-[80px] lg:w-[100px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
+                <div className="flex gap-2 sm:gap-3 items-center mt-3">
+                  <div className="w-[12vw] bg-violet-100 sm:w-[10vw] md:w-[8vw] lg:w-[6vw] h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[6vw] max-w-[80px] max-h-[80px] min-w-[50px] min-h-[50px] flex items-center justify-center border border-black rounded-lg overflow-hidden flex-shrink-0">
                     <img
-                      src="https://placehold.co/100x100/ABFFA0/white?text=D"
+                      src="images/groupPeople.svg"
                       alt="Users"
-                      className="w-full h-full object-cover"
+                      className="w-[80%] h-[80%] object-cover"
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
                       70%
                     </h2>
                     <p className="text-light text-xs sm:text-sm">
@@ -377,69 +359,125 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="min-h-[30vh] sm:min-h-[35vh] md:min-h-[40vh] w-full mt-4 sm:mt-6 md:mt-8 lg:mt-10">
-          <h1 className="w-full text-center font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mt-2">
+
+        {/* Our Tutors Section */}
+        <div className="w-full mt-8 sm:mt-10 md:mt-12 lg:mt-16">
+          <h1 className="w-full text-center font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-6 sm:mb-8 md:mb-10">
             Our Tutors
           </h1>
-          <div
-            ref={tutorsRef}
-            className="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 mt-4 sm:mt-6 md:mt-8 px-2"
-          >
-            {[
-              { name: "John Smith", role: "Senior Developer" },
-              { name: "Sarah Johnson", role: "UI/UX Designer" },
-              { name: "Mike Davis", role: "Data Scientist" },
-              { name: "Emily Chen", role: "DevOps Engineer" },
-              { name: "Alex Rodriguez", role: "Product Manager" },
-            ].map((tutor, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px]"
-              >
-                <div className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] rounded-full outline-2 outline-white outline-offset-6 sm:outline-offset-8 md:outline-offset-10 lg:outline-offset-12 xl:outline-offset-15 bg-white/50 overflow-hidden cursor-pointer"></div>
-                <div className="text-center mt-3 sm:mt-4 md:mt-5 lg:mt-6">
-                  <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg lg:text-xl">
-                    {tutor.name}
-                  </h3>
-                  <p className="text-white/80 text-xs sm:text-sm mt-1">
-                    {tutor.role}
-                  </p>
+
+          <div className="w-[90%] sm:w-[85%] md:w-[80%] mx-auto">
+            <div
+              ref={tutorsRef}
+              className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 px-2"
+            >
+              {[
+                {
+                  name: "Bharath Kumar",
+                  role: "Tutor",
+                  image: "images/Tutor/BharathKumar.png",
+                },
+                {
+                  name: "Jagan",
+                  role: "Tutor",
+                  image: "images/Tutor/Jagan.png",
+                },
+                {
+                  name: "Jayaram",
+                  role: "Tutor",
+                  image: "images/Tutor/Jayaram.jpg",
+                },
+                {
+                  name: "Padmapriya S",
+                  role: "Tutor",
+                  image: "images/Tutor/PadmapriyaS.png",
+                },
+                {
+                  name: "Ram Aswin",
+                  role: "Tutor",
+                  image: "images/Tutor/RamAswin.png",
+                },
+                {
+                  name: "Rangesh Bandri",
+                  role: "Tutor",
+                  image: "images/Tutor/RangeshBadri.png",
+                },
+                {
+                  name: "Sai Krishna",
+                  role: "Tutor",
+                  image: "images/Tutor/SaiKrishna.png",
+                },
+                {
+                  name: "ShreeVidya",
+                  role: "Tutor",
+                  image: "images/Tutor/Shreevidya.png",
+                },
+                {
+                  name: "Venkat Ramanan",
+                  role: "Tutor",
+                  image: "images/Tutor/VenkatRamanan.png",
+                },
+              ].map((tutor, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center group cursor-pointer transition-all duration-300 hover:scale-105"
+                >
+                  {/* Profile Image Container */}
+                  <div className="relative mb-3 sm:mb-4">
+                    <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-3 border-white shadow-lg transition-all duration-300 group-hover:border-yellow-300 group-hover:shadow-xl">
+                      <img
+                        src={tutor.image}
+                        alt={tutor.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Tutor Info */}
+                  <div className="text-center max-w-[140px] sm:max-w-[160px] md:max-w-[180px]">
+                    <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg mb-1 transition-colors duration-300 group-hover:text-yellow-300">
+                      {tutor.name}
+                    </h3>
+                    <p className="text-white/80 text-xs sm:text-sm leading-tight">
+                      {tutor.role}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Infinite scroll section */}
-      <div className="w-full h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] bg-black text-white absolute left-0 -bottom-20">
+      <div className="w-full h-[12vw] sm:h-[10vw] md:h-[8vw] max-h-[80px] min-h-[60px] bg-black text-white absolute left-0 -bottom-15">
         <div
           ref={scrollRef}
           className="flex items-center h-full whitespace-nowrap absolute scroll-container"
           style={{ willChange: "transform" }}
         >
-          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
-            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-blue-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
+            <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-blue-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
               Study Like Never Before with FOCAS
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
-            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-green-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
+            <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-green-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
               Get mentored by top-tier teachers for CA Foundation, CA
               Intermediate, and CA Final
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
-            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-yellow-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
+            <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-yellow-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
               Structured videos. Personal tutors. Zero guesswork.
             </h2>
           </div>
-          <div className="flex items-center gap-2 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 flex-shrink-0">
-            <div className="w-[30px] sm:w-[35px] md:w-[40px] lg:w-[50px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] rounded-full bg-purple-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
+            <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-purple-500 flex-shrink-0"></div>
+            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
               At FOCAS, every student is tracked. Every doubt, cleared. Every
               attempt, your best.
             </h2>

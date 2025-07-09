@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white pt-16 pb-10 relative md:mt-[13rem] mt-[5rem] min-h-[400px]">
       {/* Centered Blue Box with Zigzag Grid - Enhanced Responsiveness */}
-      <div className="absolute left-1/2 -top-[40px] sm:-top-[60px] md:-top-[80px] lg:-top-[120px] xl:-top-[150px] transform -translate-x-1/2 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] h-[150px] xs:h-[140px] sm:h-[170px] md:h-[200px] lg:h-[220px] xl:h-[250px] border border-black rounded-lg bg-blue-500 overflow-hidden">
+      <div className="absolute left-1/2 -top-[40px] sm:-top-[60px] md:-top-[80px] lg:-top-[120px] xl:-top-[150px] transform -translate-x-1/2 w-[80%] h-[150px] xs:h-[140px] sm:h-[170px] md:h-[200px] lg:h-[220px] xl:h-[250px] border border-black rounded-lg bg-blue-500 overflow-hidden">
         {/* Zigzag Grid Background for Blue Box */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <svg width="100%" height="100%" className="w-full h-full">
@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Content - Enhanced Responsive Layout */}
-      <div className="container mx-auto px-4 pt-16">
+      <div className="container w-[80%] mx-auto pt-16">
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
           {/* Logo and Description */}
           <div className="flex-1 lg:min-w-[250px] lg:max-w-[400px] mb-4 lg:mb-0">

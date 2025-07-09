@@ -2,10 +2,6 @@ import { useState, useRef, type MouseEvent } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import bulb from "/images/bulb.png";
 
-// ---------------------------
-// Type definitions
-// ---------------------------
-
 type Tab = "CA Foundation" | "CA Intermediate" | "CA Final";
 
 interface Course {
@@ -16,10 +12,6 @@ interface Course {
 }
 
 type CoursesData = Record<Tab, Course[]>;
-
-// ---------------------------
-// Data
-// ---------------------------
 
 const tabs: Tab[] = ["CA Foundation", "CA Intermediate", "CA Final"];
 
@@ -158,10 +150,6 @@ const coursesData: CoursesData = {
   ],
 };
 
-// ---------------------------
-// Component
-// ---------------------------
-
 const Courses = () => {
   const [activeTab, setActiveTab] = useState<Tab>(tabs[0]);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -221,12 +209,12 @@ const Courses = () => {
 
       {/* Tabs */}
       <div className="w-[90%] flex justify-center mx-auto mt-6 sm:mt-8 lg:mt-10">
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4 sm:mb-6 py-1 px-2 border border-b-3 rounded-xl w-fit">
+        <div className="flex-center flex-col lg:flex-row w-[80%] gap-2 sm:gap-4 py-1 mb-4 sm:mb-6 md:py-2 md:px-3 border border-b-3 rounded-xl">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm font-normal cursor-pointer ${
+              className={`px-4 py-3 w-[90%] rounded-lg text-xs sm:text-sm font-normal cursor-pointer ${
                 activeTab === tab
                   ? "bg-[#507cf4] text-white border border-black"
                   : "text-black"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import gsap from "gsap";
 
 // Mock cap image - in your actual implementation, replace with your cap import
 const cap = "images/cap.png";
@@ -21,9 +20,9 @@ const Card: React.FC<CardProps> = ({
   certificateImage,
 }) => {
   return (
-    <div className="card-item bg-gray-100 rounded-2xl py-3 px-2 relative w-[350px] max-w-[700px] lg:w-[700px] md:w-[600px] max-h-[400px] border border-black flex flex-col sm:flex-row justify-between items-center flex-shrink-0">
+    <div className="bg-gray-100 rounded-2xl py-3 relative w-full max-h-[400px] border border-black px-2 flex flex-col sm:flex-row justify-evenly items-center flex-shrink-0">
       {/* Percentage Badge */}
-      <div className="percentage-badge wavy-circle absolute -top-5 sm:-top-10 -left-5 sm:-left-10 bg-blue-500 text-lg sm:text-2xl text-white flex-center z-10">
+      <div className="wavy-circle absolute top-2 left-2 bg-blue-500 text-lg sm:text-2xl text-white flex-center z-10">
         {percent}%
       </div>
 
@@ -57,8 +56,7 @@ const Stories = () => {
   const capRef = useRef<HTMLImageElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
 
   // Sample data for cards
   const cardData = [
@@ -99,113 +97,85 @@ const Stories = () => {
     },
   ];
 
-  useEffect(() => {
-    const initGSAPAnimations = () => {
-      const tl = gsap.timeline();
-
-      if (gsap) {
-        gsap.set([titleRef.current, capRef.current, buttonsRef.current], {
-          opacity: 0,
-        });
-
-        tl.fromTo(
-          titleRef.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        );
-
-        tl.fromTo(
-          capRef.current,
-          { opacity: 0, y: -30, rotation: -15 },
-          { opacity: 1, y: 0, rotation: 0, duration: 1, ease: "back.out(1.7)" },
-          "-=0.4"
-        );
-
-        tl.fromTo(
-          buttonsRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-          "-=0.3"
-        );
-      }
-    };
-
-    if (!gsap) {
-      const script = document.createElement("script");
-      script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
-      script.onload = () => {
-        setTimeout(initGSAPAnimations, 100);
-      };
-      document.head.appendChild(script);
-    } else {
-      initGSAPAnimations();
+  // Calculate dimensions
+  const calculateDimensions = () => {
+    if (typeof window !== "undefined") {
+      const viewportWidth = window.innerWidth;
+      // const gap = 12; // gap-3 = 12px
+      const cardW = viewportWidth < 768 ? viewportWidth * 0.8 : 400; // Responsive card width
+      setCardWidth(Math.max(cardW, 300)); // Minimum 300px width
     }
-  }, []);
-
-  const slideToIndex = (index: number) => {
-    if (isAnimating || !cardsContainerRef.current) return;
-    setIsAnimating(true);
-
-    // Calculate actual card width based on screen size
-    const getActualCardWidth = () => {
-      if (typeof window !== "undefined") {
-        if (window.innerWidth >= 1024) return 520 + 20; // lg:w-[700px] + gap
-        if (window.innerWidth >= 768) return 500 + 120; // md:w-[600px] + gap
-        if (window.innerWidth <= 640) return 350 + 25; // sm:w-[500px] + gap
-      }
-      return 740; // fallback
-    };
-
-    const cardWidth = getActualCardWidth();
-    const containerWidth =
-      cardsContainerRef.current.parentElement?.offsetWidth || 0;
-
-    // Calculate translation - for last card, prevent extra space
-    let translateX = -index * cardWidth;
-
-    if (index === cardData.length - 1) {
-      const totalWidth = cardData.length * cardWidth;
-      const maxTranslateX = totalWidth - containerWidth;
-      translateX = Math.min(-maxTranslateX, translateX);
-    }
-
-    gsap.to(cardsContainerRef.current, {
-      x: translateX,
-      duration: 0.6,
-      ease: "power2.out",
-      onComplete: () => {
-        setIsAnimating(false);
-      },
-    });
   };
 
+  useEffect(() => {
+    calculateDimensions();
+    window.addEventListener("resize", calculateDimensions);
+    return () => window.removeEventListener("resize", calculateDimensions);
+  }, []);
+
+  useEffect(() => {
+    const initGSAPAnimations = () => {
+      // Simple fade-in animation without GSAP dependency
+      if (titleRef.current) {
+        titleRef.current.style.opacity = "1";
+        titleRef.current.style.transform = "translateY(0)";
+      }
+      if (capRef.current) {
+        capRef.current.style.opacity = "1";
+        capRef.current.style.transform = "translateY(0) rotate(0deg)";
+      }
+      if (buttonsRef.current) {
+        buttonsRef.current.style.opacity = "1";
+        buttonsRef.current.style.transform = "translateY(0)";
+      }
+    };
+
+    // Set initial styles
+    if (titleRef.current) {
+      titleRef.current.style.opacity = "0";
+      titleRef.current.style.transform = "translateY(50px)";
+      titleRef.current.style.transition =
+        "opacity 0.8s ease, transform 0.8s ease";
+    }
+    if (capRef.current) {
+      capRef.current.style.opacity = "0";
+      capRef.current.style.transform = "translateY(-30px) rotate(-15deg)";
+      capRef.current.style.transition = "opacity 1s ease, transform 1s ease";
+    }
+    if (buttonsRef.current) {
+      buttonsRef.current.style.opacity = "0";
+      buttonsRef.current.style.transform = "translateY(20px)";
+      buttonsRef.current.style.transition =
+        "opacity 0.6s ease, transform 0.6s ease";
+    }
+
+    setTimeout(initGSAPAnimations, 100);
+  }, []);
+
   const handlePrevious = () => {
-    const newIndex =
-      currentIndex === 0 ? cardData.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-    slideToIndex(newIndex);
+    if (cardsContainerRef.current) {
+      const gap = 12; // gap-3 = 12px
+      const scrollDistance = cardWidth + gap;
+      cardsContainerRef.current.scrollBy({
+        left: -scrollDistance,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handleNext = () => {
-    const newIndex =
-      currentIndex === cardData.length - 1 ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-    slideToIndex(newIndex);
+    if (cardsContainerRef.current) {
+      const gap = 12; // gap-3 = 12px
+      const scrollDistance = cardWidth + gap;
+      cardsContainerRef.current.scrollBy({
+        left: scrollDistance,
+        behavior: "smooth",
+      });
+    }
   };
 
-  // Handle window resize to recalculate positions
-  useEffect(() => {
-    const handleResize = () => {
-      slideToIndex(currentIndex);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [currentIndex]);
-
   return (
-    <div className="mb-10 lg:mb-20 w-full mt-10 px-4 sm:px-6 lg:px-8">
+    <div className="mb-10 lg:mb-20 w-full mt-10">
       <div className="w-full flex justify-center items-center py-6 sm:py-8">
         <h1
           ref={titleRef}
@@ -221,34 +191,48 @@ const Stories = () => {
         </h1>
       </div>
 
-      {/* Cards Container Wrapper */}
-      <div className="mt-8 sm:mt-15 md:w-[80%] mx-auto">
+      <div className="mt-8 sm:mt-15 w-[85%] md:w-[80%] mx-auto">
         <div
           ref={cardsContainerRef}
-          className="flex gap-6 sm:gap-10 transition-transform duration-300 ease-out"
-          style={{ width: `${cardData.length * 730}px` }}
+          className="flex gap-3 overflow-x-auto scrollbar-hide pb-4"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
         >
+          <style>{`
+            .scrollbar-hide::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
           {cardData.map((card, index) => (
-            <Card
+            <div
               key={`${card.name}-${index}`}
-              name={card.name}
-              batch={card.batch}
-              percent={card.percent}
-              personImage={card.personImage}
-              certificateImage={card.certificateImage}
-            />
+              className="flex-shrink-0"
+              style={{
+                width: `${cardWidth}px`,
+              }}
+            >
+              <Card
+                name={card.name}
+                batch={card.batch}
+                percent={card.percent}
+                personImage={card.personImage}
+                certificateImage={card.certificateImage}
+              />
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Navigation Buttons */}
       <div
         ref={buttonsRef}
         className="flex justify-center items-center gap-4 mt-6 sm:mt-8"
       >
         <button
           onClick={handlePrevious}
-          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
           aria-label="Previous cards"
         >
           <HiChevronLeft size={20} className="sm:w-6 sm:h-6" />
@@ -256,7 +240,7 @@ const Stories = () => {
 
         <button
           onClick={handleNext}
-          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
           aria-label="Next cards"
         >
           <HiChevronRight size={20} className="sm:w-6 sm:h-6" />

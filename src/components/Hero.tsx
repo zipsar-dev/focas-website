@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
-    <section className="w-[90%] mx-auto px-2 md:px-4 lg:px-6 flex items-start justify-center overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="w-[90%] md:w-[80%] mx-auto flex items-start justify-center overflow-hidden">
+      <div className="w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side: Text Content */}
           <div className="space-y-6 z-10 relative text-left order-2 lg:order-1">
@@ -18,10 +18,10 @@ const Hero = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="cursor-pointer bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <button className="cursor-pointer w-[80%] mx-auto lg:w-full bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 Start Learning
               </button>
-              <button className="cursor-pointer border-2 border-gray-800 text-gray-800 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 hover:text-white transition-all duration-300">
+              <button className="cursor-pointer mx-auto w-[80%] lg:w-full border-2 border-gray-800 text-gray-800 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 hover:text-white transition-all duration-300">
                 Get Free Career Counseling
               </button>
             </div>
