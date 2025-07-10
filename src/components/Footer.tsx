@@ -1,8 +1,8 @@
 import React from "react";
-import { FaYoutube } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import logo from "/images/logoblack.png";
+import { FaYoutube, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+
+// Mock logo - replace with your actual logo import
+const logo = "images/logoblack.png";
 
 const Footer: React.FC = () => {
   React.useEffect(() => {
@@ -17,9 +17,18 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-black text-white pt-16 pb-10 relative md:mt-[13rem] mt-[5rem] min-h-[400px]">
-      {/* Centered Blue Box with Zigzag Grid - Enhanced Responsiveness */}
-      <div className="absolute left-1/2 -top-[40px] sm:-top-[60px] md:-top-[80px] lg:-top-[120px] xl:-top-[150px] transform -translate-x-1/2 w-[80%] h-[150px] xs:h-[140px] sm:h-[170px] md:h-[200px] lg:h-[220px] xl:h-[250px] border border-black rounded-lg bg-blue-500 overflow-hidden">
+    <footer className="bg-black text-white pt-16 pb-10 relative md:mt-[13rem] mt-[5rem]">
+      {/* Centered Blue Box with Enhanced Responsive Height */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%] border border-black rounded-lg bg-blue-500 overflow-hidden
+        -top-[60px] h-[180px]
+        xs:-top-[70px] xs:h-[190px]
+        sm:-top-[80px] sm:h-[200px]
+        md:-top-[100px] md:h-[220px]
+        lg:-top-[120px] lg:h-[240px]
+        xl:-top-[130px] xl:h-[260px]
+        2xl:-top-[160px] 2xl:h-[280px]"
+      >
         {/* Zigzag Grid Background for Blue Box */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <svg width="100%" height="100%" className="w-full h-full">
@@ -124,36 +133,56 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Content inside the blue box - Enhanced Responsive Layout */}
-        <div className="relative z-10 flex items-center flex-wrap h-full text-white">
-          <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full">
-            <div className="">
-              {/* Text Content */}
-
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold sm:mb-1 md:mb-2 leading-tight">
+        <div className="relative z-10 flex items-center h-full text-white">
+          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 w-full">
+            <div className="space-y-1 sm:space-y-2">
+              {/* Main heading with responsive text and spacing */}
+              <h2
+                className="font-bold leading-tight
+                text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl
+                mb-1 sm:mb-2 md:mb-3"
+              >
                 Study Like Never Before with FOCAS
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
-                Get mentored by top-tier teachers for CA Foundation , CA
-                Intermediate and CA Final
-              </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
-                Structured videos. Personal tutors. Zero guesswork.
-              </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
-                At FOCAS, every student is tracked. Every doubt, cleared. Every
-                attempt, your best.
-              </p>
+
+              {/* Responsive text blocks */}
+              <div className="space-y-0.5 sm:space-y-1">
+                <p
+                  className="opacity-90 leading-relaxed
+                  text-xs sm:text-sm md:text-base lg:text-lg"
+                >
+                  Get mentored by top-tier teachers for CA Foundation, CA
+                  Intermediate and CA Final
+                </p>
+                <p
+                  className="opacity-90 leading-relaxed
+                  text-xs sm:text-sm md:text-base lg:text-lg"
+                >
+                  Structured videos. Personal tutors. Zero guesswork.
+                </p>
+                <p
+                  className="opacity-90 leading-relaxed
+                  text-xs sm:text-sm md:text-base lg:text-lg"
+                >
+                  At FOCAS, every student is tracked. Every doubt, cleared.
+                  Every attempt, your best.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Footer Content - Enhanced Responsive Layout */}
-      <div className="container w-[80%] mx-auto pt-16">
+      <div className="container w-[80%] mx-auto pt-16 sm:pt-20 md:pt-24">
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
           {/* Logo and Description */}
           <div className="flex-1 lg:min-w-[250px] lg:max-w-[400px] mb-4 lg:mb-0">
-            <img src={logo} alt="" className="h-[40px] sm:h-[50px] mb-4" />
+            <img
+              src={logo}
+              alt="FOCAS Logo"
+              className="h-[40px] sm:h-[50px] mb-4"
+            />
             <p className="text-sm footer-item mb-2 opacity-0 transform translate-y-4 transition-all duration-500">
               Your last attempt
             </p>
