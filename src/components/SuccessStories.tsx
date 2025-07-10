@@ -8,8 +8,6 @@ import {
 
 interface Story {
   name: string;
-  batch: string;
-  score: string;
   certificate: string;
   video: string;
 }
@@ -17,43 +15,31 @@ interface Story {
 const stories: Story[] = [
   {
     name: "Gayathri",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Gayathri.mp4",
   },
   {
     name: "Harini Aiswariya",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Harini Aiswariya.mp4",
   },
   {
     name: "Jeshurun",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Jeshurun.mp4",
   },
   {
     name: "Marimuthu",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Marimuthu.mp4",
   },
   {
     name: "Sai shruthi",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Sai shruthi.mp4",
   },
   {
     name: "Sridevi",
-    batch: "2016 Batch",
-    score: "93%",
     certificate: "images/certificate.png",
     video: "videos/Successful stories/Sridevi.mp4",
   },
@@ -151,7 +137,7 @@ const SuccessStories: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-10 md:py-16 min-h-screen">
+    <section className="w-full mt-5 py-10 md:py-16">
       <div className="text-center mt-10 md:my-16 px-4">
         <h2
           ref={titleRef}
@@ -239,14 +225,11 @@ const SuccessStories: React.FC = () => {
 
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
                       <div className="text-center">
-                        <div className="bg-yellow-400 text-black font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-full mb-2 md:mb-3 inline-block shadow-lg">
-                          {story.score} Score
-                        </div>
                         <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">
                           {story.name}
                         </h3>
                         <p className="text-gray-300 text-xs md:text-sm">
-                          {story.batch}
+                          Success Story
                         </p>
                       </div>
                     </div>

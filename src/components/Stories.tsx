@@ -20,13 +20,13 @@ const Card: React.FC<CardProps> = ({
   certificateImage,
 }) => {
   return (
-    <div className="bg-gray-100 rounded-2xl py-3 relative w-full max-h-[400px] border border-black px-2 flex flex-col sm:flex-row justify-evenly items-center flex-shrink-0">
+    <div className="bg-gray-100 rounded-2xl py-3 relative w-full min-h-[400px] border border-black px-2 flex flex-col sm:flex-row justify-evenly items-center flex-shrink-0">
       {/* Percentage Badge */}
       <div className="wavy-circle absolute top-2 left-2 bg-blue-500 text-lg sm:text-2xl text-white flex-center z-10">
         {percent}%
       </div>
 
-      <div className="person-image w-full sm:w-[48%] border border-black h-[180px] sm:h-[380px] rounded-lg relative overflow-hidden mb-3 sm:mb-0">
+      <div className="person-image w-full sm:w-[48%] border border-black h-[300px] sm:h-[380px] rounded-lg relative overflow-hidden mb-3 sm:mb-0">
         <img
           src={personImage}
           alt="img"
@@ -40,11 +40,11 @@ const Card: React.FC<CardProps> = ({
         </span>
       </div>
 
-      <div className="certificate-image w-full sm:w-[48%] border border-black h-[180px] sm:h-[380px] rounded-lg overflow-hidden">
+      <div className="certificate-image w-full sm:w-[48%] border border-black h-[380px] sm:h-[380px] rounded-lg overflow-hidden">
         <img
           src={certificateImage}
           alt="img"
-          className="w-full h-full object-cover"
+          className="w-full h-full lg:object-contain"
         />
       </div>
     </div>
@@ -63,21 +63,21 @@ const Stories = () => {
     {
       name: "Anupriya",
       batch: "2025",
-      percent: 99,
+      percent: 81,
       personImage: "images/Students/Anupriya.jpg",
       certificateImage: "images/Certificates/Anupriya.jpg",
     },
     {
       name: "Gowtham",
       batch: "2024",
-      percent: 95,
+      percent: 54,
       personImage: "images/Students/Gowtham.jpg",
       certificateImage: "images/Certificates/Gowtham .jpeg",
     },
     {
       name: "Kavitha",
       batch: "2023",
-      percent: 97,
+      percent: 76,
       personImage: "images/Students/Kavitha.jpg",
       certificateImage: "images/Certificates/kavitha.jpeg",
     },

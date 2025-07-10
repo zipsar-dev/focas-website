@@ -129,17 +129,20 @@ const Footer: React.FC = () => {
             <div className="">
               {/* Text Content */}
 
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2 md:mb-3 leading-tight">
-                Learn Like Never Before
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold sm:mb-1 md:mb-2 leading-tight">
+                Study Like Never Before with FOCAS
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 sm:mb-4 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
-                Engaging video classes by top Faculty for CA / ACCA / CMA / CS /
-                CFA
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
+                Get mentored by top-tier teachers for CA Foundation , CA
+                Intermediate and CA Final
               </p>
-
-              <button className="bg-white mt-2 md:mt-0 w-auto text-blue-500 px-4 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 cursor-pointer text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors duration-300 rounded-full whitespace-nowrap">
-                Enroll in Free course
-              </button>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
+                Structured videos. Personal tutors. Zero guesswork.
+              </p>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 max-w-none sm:max-w-md md:max-w-lg leading-relaxed">
+                At FOCAS, every student is tracked. Every doubt, cleared. Every
+                attempt, your best.
+              </p>
             </div>
           </div>
         </div>

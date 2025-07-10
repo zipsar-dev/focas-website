@@ -50,7 +50,7 @@ const Hero = () => {
               <img
                 src="images/Hero.png"
                 alt="Graduate"
-                className="h-auto max-w-full drop-shadow-2xl"
+                className="h-auto w-[70%] mx-auto md:w-full drop-shadow-2xl"
               />
             </div>
 

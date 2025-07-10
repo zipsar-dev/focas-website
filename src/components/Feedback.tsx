@@ -170,6 +170,20 @@ const Feedback = () => {
         <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
           <button
             onClick={prevCards}
+            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-4 shadow-lg"
+            type="button"
+          >
+            <HiChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+          <button
+            onClick={nextCards}
+            className="rounded-full p-3 md:p-4 transition-all duration-300 hover:scale-110 focus:outline-none bg-[#a5ffaa] cursor-pointer border border-black border-b-4 shadow-lg"
+            type="button"
+          >
+            <HiChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+          {/* <button
+            onClick={prevCards}
             className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border cursor-pointer border-black border-b-3 bg-[#a5ffaa]"
             disabled={currentIndex === 0}
           >
@@ -181,7 +195,7 @@ const Feedback = () => {
             disabled={currentIndex + cardsPerPage >= mockData.length}
           >
             <HiChevronRight />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

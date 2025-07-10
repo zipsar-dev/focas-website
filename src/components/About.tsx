@@ -450,7 +450,7 @@ const About: React.FC = () => {
       </div>
 
       {/* Infinite scroll section */}
-      <div className="w-full h-[12vw] sm:h-[10vw] md:h-[8vw] max-h-[80px] min-h-[60px] bg-black text-white absolute left-0 -bottom-15">
+      <div className="w-full h-[90px] bg-black text-white absolute left-0 -bottom-20">
         <div
           ref={scrollRef}
           className="flex items-center h-full whitespace-nowrap absolute scroll-container"
@@ -458,26 +458,26 @@ const About: React.FC = () => {
         >
           <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
             <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-blue-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
+            <h2 className="text-white font-semibold text-base sm:text-base md:text-lg">
               Study Like Never Before with FOCAS
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
             <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-green-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
+            <h2 className="text-white font-semibold text-base sm:text-base md:text-lg">
               Get mentored by top-tier teachers for CA Foundation, CA
               Intermediate, and CA Final
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
             <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-yellow-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
+            <h2 className="text-white font-semibold text-base sm:text-base md:text-lg">
               Structured videos. Personal tutors. Zero guesswork.
             </h2>
           </div>
           <div className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6 flex-shrink-0">
             <div className="w-[6vw] sm:w-[5vw] md:w-[4vw] h-[6vw] sm:h-[5vw] md:h-[4vw] max-w-[40px] max-h-[40px] min-w-[24px] min-h-[24px] rounded-full bg-purple-500 flex-shrink-0"></div>
-            <h2 className="text-white font-semibold text-sm sm:text-base md:text-lg">
+            <h2 className="text-white font-semibold text-base sm:text-base md:text-lg">
               At FOCAS, every student is tracked. Every doubt, cleared. Every
               attempt, your best.
             </h2>
