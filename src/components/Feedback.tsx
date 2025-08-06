@@ -13,7 +13,7 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 500) {
+      if (window.innerWidth <= 770) {
         setIsMobileView(true);
       } else {
         setIsMobileView(false);
@@ -28,33 +28,36 @@ const Card: React.FC<Card> = ({ student, batch, Userimage, feedback }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
-    <div className="w-[80vw] mx-auto sm:w-[45vw] lg:w-[40vw] h-[30vh] sm:h-[45vh] lg:h-[40vh] rounded-xl flex items-center justify-around border border-black py-2 sm:py-3 px-2 sm:px-3 sm:mx-3 lg:mx-4">
+    <div className="w-[80vw] mx-auto sm:w-[45vw] lg:w-[40vw] min-h-[280px] sm:min-h-[320px] lg:min-h-[300px] rounded-xl flex items-center justify-around border border-black py-4 sm:py-6 px-3 sm:px-4 sm:mx-3 lg:mx-4">
       {!isMobileView ? (
-        <div className="w-[40%] h-[95%]">
+        <div className="w-[40%] flex-shrink-0">
           <img
             src={Userimage}
             alt=""
-            className="w-full h-full border border-black rounded-lg object-fill"
+            className="w-full h-[200px] sm:h-[250px] lg:h-[300px] border border-black rounded-lg object-cover"
           />
         </div>
       ) : (
         ""
       )}
-      <div className="w-full md:w-[55%] h-[95%] flex flex-col justify-around">
+      <div className="w-full md:w-[55%] flex flex-col justify-between py-2 gap-4 sm:gap-6">
         <img
           src="/images/quote.png"
           alt=""
-          className="w-[50px] sm:w-[60px] lg:w-[75px] object-fill hidden sm:block"
+          className="w-[50px] sm:w-[60px] lg:w-[75px] object-fill hidden sm:block flex-shrink-0"
         />
-        <p className="font-light text-xs sm:text-sm lg:text-sm">{feedback}</p>
-        <div>
-          <h1 className="font-bold text-base sm:text-lg lg:text-xl">
+        <p className="font-light text-xs sm:text-sm lg:text-sm leading-relaxed flex-grow">
+          {feedback}
+        </p>
+        <div className="flex-shrink-0">
+          <h1 className="font-bold text-base sm:text-lg lg:text-xl mb-1">
             {student}
           </h1>
-          <p className="text-xs sm:text-sm text-gray-300">{batch} Batch</p>
+          <p className="text-xs sm:text-sm text-gray-300 mb-2">{batch} Batch</p>
+          <h2 className="text-sm sm:text-base">⭐⭐⭐⭐⭐</h2>
         </div>
-        <h2 className="text-sm sm:text-base">⭐⭐⭐⭐⭐</h2>
       </div>
     </div>
   );
@@ -154,7 +157,7 @@ const Feedback = () => {
             {mockData.map((card, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 w-full sm:w-1/2 lg:w-1/2`}
+                className={`flex-shrink-0 w-full sm:w-1/2 lg:w-1/2 flex items-stretch`}
               >
                 <Card
                   student={card.student}
@@ -182,20 +185,6 @@ const Feedback = () => {
           >
             <HiChevronRight className="w-5 h-5 md:w-6 md:h-6" />
           </button>
-          {/* <button
-            onClick={prevCards}
-            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border cursor-pointer border-black border-b-3 bg-[#a5ffaa]"
-            disabled={currentIndex === 0}
-          >
-            <HiChevronLeft />
-          </button>
-          <button
-            onClick={nextCards}
-            className="text-xl sm:text-2xl lg:text-3xl rounded-full hover:scale-110 transition-transform duration-200 p-2 sm:p-3 border cursor-pointer border-black border-b-3 bg-[#a5ffaa]"
-            disabled={currentIndex + cardsPerPage >= mockData.length}
-          >
-            <HiChevronRight />
-          </button> */}
         </div>
       </div>
     </div>

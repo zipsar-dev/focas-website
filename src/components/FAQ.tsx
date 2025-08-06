@@ -13,34 +13,45 @@ const FAQ: React.FC = () => {
   const faqData: FAQItem[] = [
     {
       id: 1,
-      question:
-        "What kind of support and resources will Fellows have access to during the program?",
+      question: "What are Faculty Sessions?",
       answer:
-        "Our Product Manager Fellowship is a 12 week online course that helps learners transition into a career in product management. The entire fellowship is taught online via live sessions on Zoom. Our instructors and mentors are product management executives at top technology companies and they will not only teach you the fundamentals of product management, but also help you with case studies, doubt resolution and feedback.",
+        "Faculty sessions are conceptual lectures designed to help you understand the subject thoroughly. At FOCAS, all faculty lectures are pre-recorded and structured for maximum clarity.",
     },
     {
       id: 2,
-      question: "What's included in the career services?",
+      question: "What is a Tutor Session?",
       answer:
-        "Our comprehensive career services include personalized resume reviews, mock interviews with industry professionals, portfolio development guidance, networking opportunities with alumni and industry experts, job placement assistance, and ongoing career coaching throughout the program and beyond.",
+        "Tutor sessions are live sessions focused on accountability and completion. Each student is part of a small group (maximum of 10 students) guided by a dedicated tutor who ensures progress and clarity.",
     },
     {
       id: 3,
-      question: "What's included in the career services?",
+      question: "What are the Tutor Session Timings?",
       answer:
-        "Career services encompass one-on-one mentorship sessions, access to our exclusive job board, LinkedIn profile optimization, salary negotiation workshops, and direct connections with hiring managers at top tech companies. We also provide lifetime access to our career resources portal.",
+        "Tutor sessions are conducted in 4 daily slots:  6 AM – 9 AM, 10 AM – 1 PM, 2 PM – 5 PM, 7 PM – 10 PM",
     },
     {
       id: 4,
-      question: "What's included in the career services?",
+      question: "What Language Are the Classes In?",
       answer:
-        "The career services package includes interview preparation workshops, technical skill assessments, personal branding sessions, industry-specific guidance, referral programs, and continuous support from our dedicated career counselors who work closely with you to achieve your career goals.",
+        "Classes are conducted in both English and Tamil to ensure ease of understanding.",
     },
     {
       id: 5,
-      question: "What's included in the career services?",
+      question: "Which Attempt Is This Batch Meant For?",
       answer:
-        "Our career services feature comprehensive job search strategies, application tracking systems, follow-up templates, negotiation tactics, and access to exclusive networking events. We maintain partnerships with leading companies to provide direct pathways to employment opportunities.",
+        "Our batches are exam-oriented and ideal for the targeted attempt and subsequent ones. For example: If the batch is designed for May 2026, students appearing in Jan 2026 can also enroll and benefit.",
+    },
+    {
+      id: 6,
+      question: "Who Will Be Teaching and Guiding Me?",
+      answer:
+        "You’ll learn from a team of 25+ qualified professionals handling the faculty lectures and 15+ dedicated tutors guiding you through daily sessions and progress tracking.",
+    },
+    {
+      id: 7,
+      question: "Can I Purchase Only the Tutor Sessions Separately?",
+      answer:
+        "No, tutor sessions cannot be purchased separately. At FOCAS, every subject is offered as a combined package—faculty lectures followed by tutor sessions. The tutor sessions are structured to complement the faculty lectures, ensuring complete understanding and consistent follow-through.",
     },
   ];
 

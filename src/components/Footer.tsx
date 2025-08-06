@@ -187,9 +187,9 @@ const Footer: React.FC = () => {
               Your last attempt
             </p>
             <p className="text-sm footer-item opacity-0 transform translate-y-4 transition-all duration-500 leading-relaxed">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
+              Providing CA students with precise, high-quality question banks
+              and reviewers. Dedicated to spreading knowledge and supporting
+              your success.
             </p>
           </div>
 

@@ -387,36 +387,6 @@ const About: React.FC = () => {
                   role: "Tutor",
                   image: "images/Tutor/Jayaram.jpg",
                 },
-                {
-                  name: "Padmapriya S",
-                  role: "Tutor",
-                  image: "images/Tutor/PadmapriyaS.png",
-                },
-                {
-                  name: "Ram Aswin",
-                  role: "Tutor",
-                  image: "images/Tutor/RamAswin.png",
-                },
-                {
-                  name: "Rangesh Bandri",
-                  role: "Tutor",
-                  image: "images/Tutor/RangeshBadri.png",
-                },
-                {
-                  name: "Sai Krishna",
-                  role: "Tutor",
-                  image: "images/Tutor/SaiKrishna.png",
-                },
-                {
-                  name: "ShreeVidya",
-                  role: "Tutor",
-                  image: "images/Tutor/Shreevidya.png",
-                },
-                {
-                  name: "Venkat Ramanan",
-                  role: "Tutor",
-                  image: "images/Tutor/VenkatRamanan.png",
-                },
               ].map((tutor, index) => (
                 <div
                   key={index}
