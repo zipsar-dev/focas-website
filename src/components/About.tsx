@@ -250,15 +250,15 @@ const About: React.FC = () => {
           {/* Mobile: Image first, Desktop: Image second */}
           <div className="w-full lg:w-1/2 min-h-[35vh] flex-center order-1 lg:order-2 mb-4 lg:mb-0">
             <div className="w-full h-full relative">
-              <div
+              {/* <div
                 ref={shapeRef}
                 className="abs-center w-[60%] h-[250px] lg:w-[50%] lg:h-[380px] bg-[#a5ffaa] border-2 border-black rounded-t-full before:w-[100%] before:h-[100%] before:rounded-t-full before:bg-white before:absolute before:-top-[0.5rem] sm:before:-top-[0.75rem] md:before:-top-[1rem] before:-left-[0.5rem] sm:before:-left-[0.75rem] md:before:-left-[1rem]"
-              ></div>
+              ></div> */}
               <div className="absolute inset-0 z-10 pointer-events-none">
                 <img
                   src="images/Tutor/Group.png"
                   alt="Tutor illustration"
-                  className="w-[90%] h-[230px] lg:w-[50%] lg:h-[380px] abs-center object-cover"
+                  className="w-[90%] h-[230px] lg:w-[80%] lg:h-[380px] abs-center object-cover"
                 />
               </div>
             </div>
@@ -373,19 +373,19 @@ const About: React.FC = () => {
             >
               {[
                 {
+                  name: "VenkatRamanan",
+                  role: "Tutor",
+                  image: "public/images/Tutor/VenkatRamanan.png",
+                },
+                {
+                  name: "PadmapriyaS",
+                  role: "Tutor",
+                  image: "public/images/Tutor/PadmapriyaS.png",
+                },
+                {
                   name: "Bharath Kumar",
                   role: "Tutor",
                   image: "images/Tutor/BharathKumar.png",
-                },
-                {
-                  name: "Jagan",
-                  role: "Tutor",
-                  image: "images/Tutor/Jagan.png",
-                },
-                {
-                  name: "Jayaram",
-                  role: "Tutor",
-                  image: "images/Tutor/Jayaram.jpg",
                 },
               ].map((tutor, index) => (
                 <div
