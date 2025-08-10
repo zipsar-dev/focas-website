@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-// Mock cap image - in your actual implementation, replace with your cap import
 const cap = "images/cap.png";
 
 interface CardProps {
@@ -20,17 +19,16 @@ const Card: React.FC<CardProps> = ({
   certificateImage,
 }) => {
   return (
-    <div className="bg-gray-100 rounded-2xl py-3 relative w-full min-h-[400px] border border-black px-2 flex flex-col sm:flex-row justify-evenly items-center flex-shrink-0">
-      {/* Percentage Badge */}
+    <div className="bg-gray-100 rounded-2xl py-3 relative w-full min-h-[400px] border border-black px-2 flex flex-col sm:flex-row justify-evenly items-center flex-shrink-0 animate-fadeIn">
       <div className="wavy-circle absolute top-2 left-2 bg-blue-500 text-lg sm:text-2xl text-white flex-center z-10">
         {percent}%
       </div>
 
-      <div className="person-image w-full sm:w-[48%] border border-black h-[300px] sm:h-[380px] rounded-lg relative overflow-hidden mb-3 sm:mb-0">
+      <div className="person-image w-full sm:w-[48%] border border-black h-[300px] sm:h-[380px] rounded-lg relative overflow-hidden mb-3 sm:mb-0 flex items-center justify-center bg-white">
         <img
           src={personImage}
           alt="img"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover sm:object-contain"
         />
         <span className="person-info w-full min-h-[50px] bg-white absolute bottom-0 px-3 sm:px-5 py-2">
           <h3 className="font-semibold text-sm sm:text-base">{name}</h3>
@@ -40,7 +38,7 @@ const Card: React.FC<CardProps> = ({
         </span>
       </div>
 
-      <div className="certificate-image w-full sm:w-[48%] border border-black h-[380px] sm:h-[380px] rounded-lg overflow-hidden">
+      <div className="certificate-image w-full sm:w-[48%] border border-black h-[380px] sm:h-[380px] rounded-lg overflow-hidden flex items-center justify-center bg-white">
         <img
           src={certificateImage}
           alt="img"
@@ -58,7 +56,6 @@ const Stories = () => {
   const buttonsRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState(0);
 
-  // Sample data for cards
   const cardData = [
     {
       name: "Anupriya",
@@ -97,13 +94,21 @@ const Stories = () => {
     },
   ];
 
-  // Calculate dimensions
   const calculateDimensions = () => {
     if (typeof window !== "undefined") {
       const viewportWidth = window.innerWidth;
-      // const gap = 12; // gap-3 = 12px
-      const cardW = viewportWidth < 768 ? viewportWidth * 0.8 : 400; // Responsive card width
-      setCardWidth(Math.max(cardW, 300)); // Minimum 300px width
+      const gap = 12;
+      let cardW = 0;
+
+      if (viewportWidth < 640) {
+        cardW = viewportWidth * 0.8; // mobile width
+      } else if (viewportWidth < 1024) {
+        cardW = (viewportWidth - gap * 3) / 2; // 2 cards
+      } else {
+        cardW = (viewportWidth - gap * 4) / 3; // 3 cards
+      }
+
+      setCardWidth(cardW);
     }
   };
 
@@ -114,8 +119,7 @@ const Stories = () => {
   }, []);
 
   useEffect(() => {
-    const initGSAPAnimations = () => {
-      // Simple fade-in animation without GSAP dependency
+    const initAnimations = () => {
       if (titleRef.current) {
         titleRef.current.style.opacity = "1";
         titleRef.current.style.transform = "translateY(0)";
@@ -130,7 +134,6 @@ const Stories = () => {
       }
     };
 
-    // Set initial styles
     if (titleRef.current) {
       titleRef.current.style.opacity = "0";
       titleRef.current.style.transform = "translateY(50px)";
@@ -149,12 +152,12 @@ const Stories = () => {
         "opacity 0.6s ease, transform 0.6s ease";
     }
 
-    setTimeout(initGSAPAnimations, 100);
+    setTimeout(initAnimations, 100);
   }, []);
 
   const handlePrevious = () => {
     if (cardsContainerRef.current) {
-      const gap = 12; // gap-3 = 12px
+      const gap = 12;
       const scrollDistance = cardWidth + gap;
       cardsContainerRef.current.scrollBy({
         left: -scrollDistance,
@@ -165,7 +168,7 @@ const Stories = () => {
 
   const handleNext = () => {
     if (cardsContainerRef.current) {
-      const gap = 12; // gap-3 = 12px
+      const gap = 12;
       const scrollDistance = cardWidth + gap;
       cardsContainerRef.current.scrollBy({
         left: scrollDistance,
@@ -176,7 +179,20 @@ const Stories = () => {
 
   return (
     <div className="mb-10 lg:mb-20 w-full mt-10">
-      <div className="w-full flex justify-center items-center py-6 sm:py-8">
+      <style>{`
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-in-out forwards;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+
+      <div className="w-full flex flex-col items-center py-6 sm:py-8">
         <h1
           ref={titleRef}
           className="font-semibold text-3xl sm:text-4xl lg:text-5xl relative"
@@ -189,9 +205,10 @@ const Stories = () => {
           />
           Success Stories
         </h1>
+        <hr className="border-t-4 border-black w-[10%] mt-4" />
       </div>
 
-      <div className="mt-8 sm:mt-15 w-[85%] md:w-[80%] mx-auto">
+      <div className="mt-8 sm:mt-12 w-[90%] mx-auto">
         <div
           ref={cardsContainerRef}
           className="flex gap-3 overflow-x-auto scrollbar-hide pb-4"
@@ -201,26 +218,15 @@ const Stories = () => {
             WebkitOverflowScrolling: "touch",
           }}
         >
-          <style>{`
-            .scrollbar-hide::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
           {cardData.map((card, index) => (
             <div
               key={`${card.name}-${index}`}
-              className="flex-shrink-0"
-              style={{
-                width: `${cardWidth}px`,
-              }}
+              className={`flex-shrink-0 ${
+                cardWidth < 640 ? "mx-auto" : ""
+              }`}
+              style={{ width: `${cardWidth}px` }}
             >
-              <Card
-                name={card.name}
-                batch={card.batch}
-                percent={card.percent}
-                personImage={card.personImage}
-                certificateImage={card.certificateImage}
-              />
+              <Card {...card} />
             </div>
           ))}
         </div>
@@ -232,7 +238,7 @@ const Stories = () => {
       >
         <button
           onClick={handlePrevious}
-          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
           aria-label="Previous cards"
         >
           <HiChevronLeft size={20} className="sm:w-6 sm:h-6" />
@@ -240,7 +246,7 @@ const Stories = () => {
 
         <button
           onClick={handleNext}
-          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black border-b-3 transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
+          className="bg-[#a5ffaa] cursor-pointer p-2 sm:p-3 rounded-full border border-black transition-all duration-200 flex items-center justify-center hover:scale-110 hover:shadow-lg"
           aria-label="Next cards"
         >
           <HiChevronRight size={20} className="sm:w-6 sm:h-6" />
