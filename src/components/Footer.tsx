@@ -42,56 +42,14 @@ const Footer: React.FC = () => {
                 patternUnits="userSpaceOnUse"
               >
                 {/* Vertical lines */}
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="30"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
-                <line
-                  x1="15"
-                  y1="0"
-                  x2="15"
-                  y2="30"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
-                <line
-                  x1="30"
-                  y1="0"
-                  x2="30"
-                  y2="30"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
+                <line x1="0" y1="0" x2="0" y2="30" stroke="white" strokeWidth="0.5" />
+                <line x1="15" y1="0" x2="15" y2="30" stroke="white" strokeWidth="0.5" />
+                <line x1="30" y1="0" x2="30" y2="30" stroke="white" strokeWidth="0.5" />
 
                 {/* Horizontal lines */}
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="30"
-                  y2="0"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
-                <line
-                  x1="0"
-                  y1="15"
-                  x2="30"
-                  y2="15"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
-                <line
-                  x1="0"
-                  y1="30"
-                  x2="30"
-                  y2="30"
-                  stroke="white"
-                  strokeWidth="0.5"
-                />
+                <line x1="0" y1="0" x2="30" y2="0" stroke="white" strokeWidth="0.5" />
+                <line x1="0" y1="15" x2="30" y2="15" stroke="white" strokeWidth="0.5" />
+                <line x1="0" y1="30" x2="30" y2="30" stroke="white" strokeWidth="0.5" />
 
                 {/* Zigzag diagonal lines */}
                 <path
@@ -132,43 +90,32 @@ const Footer: React.FC = () => {
           </svg>
         </div>
 
-        {/* Content inside the blue box - Enhanced Responsive Layout */}
-        <div className="relative z-10 flex items-center h-full text-white">
-          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 w-full">
-            <div className="space-y-1 sm:space-y-2">
-              {/* Main heading with responsive text and spacing */}
-              <h2
-                className="font-bold leading-tight
-                text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl
-                mb-1 sm:mb-2 md:mb-3"
-              >
-                Study Like Never Before with FOCAS
-              </h2>
+        {/* Content inside the blue box - flex container for text + image */}
+        <div className="relative z-10 flex items-center h-full text-white px-6 sm:px-10">
+          {/* Left: Text content */}
+          <div className="flex-grow w-[40%]">
+            <h2 className="font-extrabold text-3xl sm:text-4xl md:text-5xl mb-2 leading-tight">
+              Learn Like Never Before
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg opacity-90 mb-6 max-w-xl">
+              Engaging video classes by top Faculty for CA / ACCA / CMA / CS / CFA
+            </p>
+            <button
+              className="bg-white text-blue-600 font-semibold rounded-full px-6 py-3 text-sm sm:text-base hover:bg-gray-100 transition"
+              type="button"
+            >
+              Enroll in Free Course
+            </button>
+          </div>
 
-              {/* Responsive text blocks */}
-              <div className="space-y-0.5 sm:space-y-1">
-                <p
-                  className="opacity-90 leading-relaxed
-                  text-xs sm:text-sm md:text-base lg:text-lg"
-                >
-                  Get mentored by top-tier teachers for CA Foundation, CA
-                  Intermediate and CA Final
-                </p>
-                <p
-                  className="opacity-90 leading-relaxed
-                  text-xs sm:text-sm md:text-base lg:text-lg"
-                >
-                  Structured videos. Personal tutors. Zero guesswork.
-                </p>
-                <p
-                  className="opacity-90 leading-relaxed
-                  text-xs sm:text-sm md:text-base lg:text-lg"
-                >
-                  At FOCAS, every student is tracked. Every doubt, cleared.
-                  Every attempt, your best.
-                </p>
-              </div>
-            </div>
+          {/* Right: Person image */}
+          <div className="flex-shrink-0 w-[60%] pr-0 hidden sm:block">
+            <img
+              src="/images/footer.png"
+              alt="Happy student"
+              className="w-full h-auto object-contain"
+              draggable={false}
+            />
           </div>
         </div>
       </div>
