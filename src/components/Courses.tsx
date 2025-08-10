@@ -18,134 +18,125 @@ const tabs: Tab[] = ["CA Foundation", "CA Intermediate", "CA Final"];
 const coursesData: CoursesData = {
   "CA Foundation": [
     {
-      title: "Product Manager Fellowship",
+      title: "Paper 1: Principles & Practice of Accounting",
       rating: "5.0",
-      image: "https://placehold.co/300x200/FF6B6B/white?text=Course+1",
+      image: "https://placehold.co/300x200/FF6B6B/white?text=Foundation+1",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“The ABC of business accounting.” Learn how businesses record transactions, prepare accounts, and calculate profits — the foundation of all accounting.",
     },
     {
-      title: "Digital Marketing Mastery",
-      rating: "4.8",
-      image: "https://placehold.co/300x200/4ECDC4/white?text=Course+2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      title: "Data Science Bootcamp",
+      title: "Paper 2: Business Laws",
       rating: "4.9",
-      image: "https://placehold.co/300x200/45B7D1/white?text=Course+3",
+      image: "https://placehold.co/300x200/4ECDC4/white?text=Foundation+2",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“Know the rules that guide businesses.” Understand essential business laws like contracts, sales of goods, and basic legal principles every business must follow.",
     },
     {
-      title: "Web Development Pro",
+      title: "Paper 3: Business Mathematics, Logical Reasoning & Statistics",
+      rating: "4.8",
+      image: "https://placehold.co/300x200/45B7D1/white?text=Foundation+3",
+      description:
+        "“Numbers that make decisions smarter.” Develop problem‑solving skills with maths, reasoning, and statistics — essential tools for financial decision‑making.",
+    },
+    {
+      title: "Paper 4: Business Economics",
       rating: "4.7",
-      image: "https://placehold.co/300x200/96CEB4/white?text=Course+4",
+      image: "https://placehold.co/300x200/96CEB4/white?text=Foundation+4",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      title: "AI & Machine Learning",
-      rating: "4.9",
-      image: "https://placehold.co/300x200/FFEAA7/white?text=Course+5",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      title: "Cloud Computing Expert",
-      rating: "4.8",
-      image: "https://placehold.co/300x200/DDA0DD/white?text=Course+6",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“Why markets move — and how businesses respond.” Learn the basics of economics, demand & supply, pricing, market structures, and how businesses make decisions in a dynamic economy.",
     },
   ],
+
   "CA Intermediate": [
+    // Group 1
     {
-      title: "Financial Analysis Pro",
+      title: "Paper 1: Advanced Accounting",
+      rating: "5.0",
+      image: "https://placehold.co/300x200/F39C12/white?text=Intermediate+1",
+      description:
+        "“The language of business numbers.” Learn how companies prepare and present financial statements, handle mergers, and follow Accounting Standards.",
+    },
+    {
+      title: "Paper 2: Corporate & Other Laws",
       rating: "4.9",
-      image: "https://placehold.co/300x200/F39C12/white?text=Inter+1",
+      image: "https://placehold.co/300x200/E67E22/white?text=Intermediate+2",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“The rulebook for running businesses.” Understand the Companies Act, 2013 and basic business laws like contracts and negotiable instruments — essential for corporate compliance.",
     },
     {
-      title: "Audit & Assurance",
-      rating: "4.7",
-      image: "https://placehold.co/300x200/E67E22/white?text=Inter+2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      title: "Taxation Mastery",
+      title: "Paper 3: Taxation",
       rating: "4.8",
-      image: "https://placehold.co/300x200/9B59B6/white?text=Inter+3",
+      image: "https://placehold.co/300x200/9B59B6/white?text=Intermediate+3",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“Every rupee counts — know where it goes.” Learn the basics of Income Tax and GST — how taxes are calculated, paid, and managed for individuals and businesses.",
     },
+
+    // Group 2
     {
-      title: "Corporate Law",
-      rating: "4.6",
-      image: "https://placehold.co/300x200/8E44AD/white?text=Inter+4",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      title: "Cost Management",
+      title: "Paper 4: Cost and Management Accounting",
       rating: "4.7",
-      image: "https://placehold.co/300x200/E74C3C/white?text=Inter+5",
+      image: "https://placehold.co/300x200/8E44AD/white?text=Intermediate+4",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“Cut costs, not growth.” Discover how businesses track costs, set budgets, and take financial decisions that improve efficiency and profitability.",
     },
     {
-      title: "Strategic Management",
-      rating: "4.9",
-      image: "https://placehold.co/300x200/C0392B/white?text=Inter+6",
+      title: "Paper 5: Auditing and Ethics",
+      rating: "4.8",
+      image: "https://placehold.co/300x200/E74C3C/white?text=Intermediate+5",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "“Auditors are watchdogs — not bloodhounds.” Learn how auditors review financial records, assess risks, and ensure companies follow rules — upholding trust and ethical standards.",
+    },
+    {
+      title: "Paper 6: Financial Management and Strategic Management",
+      rating: "4.9",
+      image: "https://placehold.co/300x200/C0392B/white?text=Intermediate+6",
+      description:
+        "“Plan the money, plan the future.” Understand how companies manage funds, make investment decisions, and design strategies to grow and stay competitive.",
     },
   ],
+
   "CA Final": [
     {
       title: "Advanced Auditing",
       rating: "4.8",
       image: "https://placehold.co/300x200/27AE60/white?text=Final+1",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Learn advanced auditing techniques, risk assessments, and best practices to ensure compliance and trust in financial statements.",
     },
     {
       title: "International Taxation",
       rating: "4.9",
       image: "https://placehold.co/300x200/229954/white?text=Final+2",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Understand tax policies, treaties, and regulations affecting international business and cross-border transactions.",
     },
     {
       title: "Financial Reporting",
       rating: "4.7",
       image: "https://placehold.co/300x200/3498DB/white?text=Final+3",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Master the preparation, presentation, and analysis of financial reports adhering to accounting standards.",
     },
     {
       title: "Corporate Restructuring",
       rating: "4.8",
       image: "https://placehold.co/300x200/2980B9/white?text=Final+4",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Explore mergers, acquisitions, demergers, and other restructuring processes to optimize corporate performance.",
     },
     {
       title: "Risk Management",
       rating: "4.6",
       image: "https://placehold.co/300x200/16A085/white?text=Final+5",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Identify, assess, and mitigate financial and operational risks within organizations.",
     },
     {
       title: "Ethics & Governance",
       rating: "4.9",
       image: "https://placehold.co/300x200/138D75/white?text=Final+6",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        "Learn principles of corporate governance, ethical standards, and regulatory compliance for sustainable business practices.",
     },
   ],
 };
@@ -184,14 +175,14 @@ const Courses = () => {
 
   const handlePrevious = () => {
     scrollContainerRef.current?.scrollBy({
-      left: -300, // Reduced scroll distance for smaller screens
+      left: -300,
       behavior: "smooth",
     });
   };
 
   const handleNext = () => {
     scrollContainerRef.current?.scrollBy({
-      left: 300, // Reduced scroll distance for smaller screens
+      left: 300,
       behavior: "smooth",
     });
   };
@@ -263,11 +254,11 @@ const Courses = () => {
                   <p className="mt-1 sm:mt-2 text-xs sm:text-sm lg:text-base text-gray-400/50">
                     {course.description}
                   </p>
-                  <div className="w-full">
+                  {/* <div className="w-full">
                     <button className="border border-black rounded-full px-4 sm:px-6 lg:px-8 py-1 sm:py-2 text-xs sm:text-sm cursor-pointer">
                       Know More
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
