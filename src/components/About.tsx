@@ -375,12 +375,12 @@ const About: React.FC = () => {
                 {
                   name: "VenkatRamanan",
                   role: "Tutor",
-                  image: "public/images/Tutor/VenkatRamanan.png",
+                  image: "images/Tutor/VenkatRamanan.png",
                 },
                 {
                   name: "PadmapriyaS",
                   role: "Tutor",
-                  image: "public/images/Tutor/PadmapriyaS.png",
+                  image: "images/Tutor/PadmapriyaS.png",
                 },
                 {
                   name: "Bharath Kumar",
