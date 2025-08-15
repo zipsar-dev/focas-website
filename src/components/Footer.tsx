@@ -18,16 +18,16 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-black text-white pt-16 pb-10 relative md:mt-[13rem] mt-[5rem]">
-      {/* Centered Blue Box with Enhanced Responsive Height */}
+      {/* Centered Blue Box */}
       <div
-        className="absolute left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%] border border-black rounded-lg bg-blue-500 overflow-hidden
-        -top-[60px] h-[180px]
-        xs:-top-[70px] xs:h-[190px]
-        sm:-top-[80px] sm:h-[200px]
-        md:-top-[100px] md:h-[220px]
-        lg:-top-[120px] lg:h-[240px]
-        xl:-top-[130px] xl:h-[260px]
-        2xl:-top-[160px] 2xl:h-[280px]"
+        className="absolute left-1/2 transform -translate-x-1/2 w-[90%] sm:w-[85%] md:w-[80%] border border-black rounded-lg bg-blue-500 overflow-hidden
+        -top-[80px] h-[200px]
+        xs:-top-[90px] xs:h-[210px]
+        sm:-top-[100px] sm:h-[220px]
+        md:-top-[120px] md:h-[240px]
+        lg:-top-[140px] lg:h-[260px]
+        xl:-top-[150px] xl:h-[280px]
+        2xl:-top-[160px] 2xl:h-[300px]"
       >
         {/* Zigzag Grid Background for Blue Box */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
@@ -42,14 +42,56 @@ const Footer: React.FC = () => {
                 patternUnits="userSpaceOnUse"
               >
                 {/* Vertical lines */}
-                <line x1="0" y1="0" x2="0" y2="30" stroke="white" strokeWidth="0.5" />
-                <line x1="15" y1="0" x2="15" y2="30" stroke="white" strokeWidth="0.5" />
-                <line x1="30" y1="0" x2="30" y2="30" stroke="white" strokeWidth="0.5" />
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="30"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
+                <line
+                  x1="15"
+                  y1="0"
+                  x2="15"
+                  y2="30"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
+                <line
+                  x1="30"
+                  y1="0"
+                  x2="30"
+                  y2="30"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
 
                 {/* Horizontal lines */}
-                <line x1="0" y1="0" x2="30" y2="0" stroke="white" strokeWidth="0.5" />
-                <line x1="0" y1="15" x2="30" y2="15" stroke="white" strokeWidth="0.5" />
-                <line x1="0" y1="30" x2="30" y2="30" stroke="white" strokeWidth="0.5" />
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="30"
+                  y2="0"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
+                <line
+                  x1="0"
+                  y1="15"
+                  x2="30"
+                  y2="15"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
+                <line
+                  x1="0"
+                  y1="30"
+                  x2="30"
+                  y2="30"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
 
                 {/* Zigzag diagonal lines */}
                 <path
@@ -90,26 +132,27 @@ const Footer: React.FC = () => {
           </svg>
         </div>
 
-        {/* Content inside the blue box - flex container for text + image */}
-        <div className="relative z-10 flex items-center h-full text-white px-6 sm:px-10">
-          {/* Left: Text content */}
-          <div className="flex-grow w-[40%]">
-            <h2 className="font-extrabold text-3xl sm:text-4xl md:text-5xl mb-2 leading-tight">
+        {/* Content inside the blue box - responsive flex container */}
+        <div className="relative z-10 flex items-center h-full text-white px-4 sm:px-6 lg:px-10">
+          {/* Left: Text content - centered on mobile/tablet, left-aligned on desktop */}
+          <div className="flex-grow text-center lg:text-left w-full lg:w-[60%]">
+            <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 leading-tight">
               Learn Like Never Before
             </h2>
-            <p className="text-sm sm:text-base md:text-lg opacity-90 mb-6 max-w-xl">
-              Engaging video classes by top Faculty for CA / ACCA / CMA / CS / CFA
+            <p className="text-xs xs:text-sm sm:text-base md:text-lg opacity-90 mb-4 sm:mb-6 max-w-xl mx-auto lg:mx-0">
+              Engaging video classes by top Faculty for CA / ACCA / CMA / CS /
+              CFA
             </p>
             <button
-              className="bg-white text-blue-600 font-semibold rounded-full px-6 py-3 text-sm sm:text-base hover:bg-gray-100 transition"
+              className="bg-white text-blue-600 font-semibold rounded-full px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base hover:bg-gray-100 transition"
               type="button"
             >
               Enroll in Free Course
             </button>
           </div>
 
-          {/* Right: Person image */}
-          <div className="flex-shrink-0 w-[60%] pr-0 hidden sm:block">
+          {/* Right: Person image - Hidden on tablet (md), visible on desktop (lg+) */}
+          <div className="flex-shrink-0 w-[40%] pr-0 hidden lg:block">
             <img
               src="/images/footer.png"
               alt="Happy student"
@@ -121,7 +164,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Content - Enhanced Responsive Layout */}
-      <div className="container w-[80%] mx-auto pt-16 sm:pt-20 md:pt-24">
+      <div className="container w-[80%] mx-auto pt-20 sm:pt-24 md:pt-28">
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
           {/* Logo and Description */}
           <div className="flex-1 lg:min-w-[250px] lg:max-w-[400px] mb-4 lg:mb-0">
